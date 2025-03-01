@@ -1,0 +1,17 @@
+.visi-misi .content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.visi-misi .content ul li {
+    padding: 10px 0 0 28px;
+    position: relative;
+}
+
+.visi-misi .content ul i {
+    left: 0;
+    top: 5px;
+    position: absolute;
+    font-size: 20px;
+    color: #1bbd36;
+}

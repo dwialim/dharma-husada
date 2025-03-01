@@ -1,0 +1,284 @@
+@import "@css/fonts/poppins";
+@import "@css/fonts/size";
+
+/*--------------------------------------------------------------
+# Font & Color Variables
+# Help: https://bootstrapmade.com/color-system/
+--------------------------------------------------------------*/
+/* Fonts */
+:root {
+	--default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--heading-font: "Poppins",  sans-serif;
+	--nav-font: "Raleway",  sans-serif;
+}
+
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+:root {
+	--background-color: #ffffff; /* Background color for the entire website, including individual sections */
+	--default-color: #444444; /* Default color used for the majority of the text content across the entire website */
+	--heading-color: #2c4964; /* Color for headings, subheadings and title throughout the website */
+	--accent-color: #1977cc; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+	--surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+	--contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+}
+
+/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+:root {
+	--nav-color: #2c4964;  /* The default color of the main navmenu links */
+	--nav-hover-color: #1977cc; /* Applied to main navmenu links when they are hovered over or active */
+	--nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+	--nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+	--nav-dropdown-color: #2c4964; /* Used for navigation links of the dropdown items in the navigation menu. */
+	--nav-dropdown-hover-color: #1977cc; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+}
+
+/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+.light-background {
+	--background-color: #f1f7fc;
+	--surface-color: #ffffff;
+}
+
+.dark-background {
+	--background-color: #060606;
+	--default-color: #ffffff;
+	--heading-color: #ffffff;
+	--surface-color: #252525;
+	--contrast-color: #ffffff;
+}
+
+/* Smooth scroll */
+:root {
+	scroll-behavior: smooth;
+}
+
+:root {
+	/* --background-color: #FBC2EB;
+	--background-color: #A6C1EE; */
+	--color-pink: #FBC2EB;
+	--color-purple: #A6C1EE;
+	--fs-default: 14px;
+}
+
+* {
+	font-family: "Poppins", sans-serif;
+}
+
+.grid-center {
+	display: grid;
+	align-content: center;
+}
+
+/*--------------------------------------------------------------
+# Global Footer
+--------------------------------------------------------------*/
+.footer {
+	color: var(--default-color);
+	background-color: var(--background-color);
+	border-top: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
+	font-size: 14px;
+	position: relative;
+}
+
+.footer .footer-top {
+	padding-top: 50px;
+}
+
+.footer .footer-about .logo, .footer .footer-links .title {
+	line-height: 1;
+	margin-bottom: 25px;
+	justify-content: center;
+}
+
+.footer .footer-about .logo img {
+	max-height: 40px;
+	margin-right: 6px;
+}
+
+.footer .footer-about .logo span, .footer-links .title{
+	color: var(--heading-color);
+	font-family: var(--heading-font);
+	font-size: 26px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+.footer .footer-about p {
+	font-size: 14px;
+	font-family: var(--heading-font);
+}
+
+.footer .social-links {
+	justify-content: center;
+}
+
+.footer .social-links a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+	font-size: 16px;
+	color: color-mix(in srgb, var(--default-color), transparent 20%);
+	margin-right: 10px;
+	transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+	color: var(--accent-color);
+	border-color: var(--accent-color);
+}
+
+.footer h4 {
+	font-size: 16px;
+	font-weight: bold;
+	position: relative;
+	padding-bottom: 12px;
+}
+
+.footer .footer-links {
+	margin-bottom: 30px;
+}
+
+.footer .footer-links ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.footer .footer-links ul i {
+	padding-right: 2px;
+	font-size: 12px;
+	line-height: 0;
+}
+
+.footer .footer-links ul li {
+	padding: 10px 0;
+	display: flex;
+	align-items: center;
+}
+
+.footer .footer-links ul li:first-child {
+	padding-top: 0;
+}
+
+.footer .footer-links ul a {
+	color: color-mix(in srgb, var(--default-color), transparent 30%);
+	display: inline-block;
+	line-height: 1;
+}
+
+.footer .footer-links ul a:hover {
+	color: var(--accent-color);
+}
+
+.footer .footer-contact p {
+	margin-bottom: 5px;
+}
+
+.footer .copyright {
+	padding-top: 25px;
+	padding-bottom: 25px;
+	border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.footer .copyright p {
+	margin-bottom: 0;
+}
+
+.footer .credits {
+	margin-top: 8px;
+	font-size: 13px;
+}
+
+.footer .stats-item {
+	/* background-color: var(--surface-color); */
+	margin-top: -27px;
+	padding: 30px 30px 25px 30px;
+	width: 100%;
+	position: relative;
+	text-align: center;
+	/* box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.1); */
+	box-shadow: 0px -5px 3px 0px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	z-index: 0;
+}
+
+.footer i.top {
+	color: var(--contrast-color);
+	background-color: var(--accent-color);
+	box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.1);
+	width: 54px;
+	height: 54px;
+	font-size: 24px;
+	border-radius: 50px;
+	border: 2px solid var(--background-color);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	z-index: 1;
+}
+
+/* .footer .schedule .day {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+	padding: 5px 0;
+	position: relative;
+} */
+
+/* .footer .schedule .day span:first-child {
+	white-space: nowrap;
+	position: relative;
+	padding-right: 10px;
+} */
+
+/* .footer .schedule .day span:last-child {
+	white-space: nowrap;
+	padding-left: 10px;
+} */
+
+/* .footer .schedule .day::before {
+	content: "--------------------------------";
+	position: absolute;
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: gray;
+	z-index: -1;
+	font-size: 14px;
+} */
+
+.day {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+	padding: 5px 0;
+	position: relative;
+}
+
+.day span {
+	background-color: var(--background-color);
+	padding: 0 5px; /* Tambahkan sedikit padding untuk tampilan lebih rapi */
+	position: relative;
+	z-index: 1;
+}
+
+.day::before {
+	content: "";
+	border-top: 2px solid color-mix(in srgb, var(--default-color), transparent 80%);
+	position: absolute;
+	left: 0;
+	right: 0;
+	/* top: 50%;
+	transform: translateY(-50%); */
+	z-index: 0;
+}
+
+.text-justify {
+	text-align: justify;
+}

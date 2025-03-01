@@ -1,19 +1,43 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import tailwindcss from '@tailwindcss/vite'
+// import tailwindcss from '@tailwindcss/vite'
+
+let host = 'dev.dwialim.web.id'
 
 export default defineConfig({
 	plugins: [
-		tailwindcss(),
+		// tailwindcss(),
 		laravel({
-			input: ['resources/css/app.css', 'resources/js/app.js'],
-			refresh: true,
+			input: [
+				'resources/css/landing-page/app.css',
+				'resources/css/beranda.css',
+				'resources/js/app.js',
+			],
+			refresh: [
+				'app/Http/Controllers/**',
+				'resources/routes/**',
+				'routes/**',
+				'resources/views/**',
+			],
+			// refresh: true,
 		}),
 	],
-    resolve: {
-        alias: {
-            '@css': '/resources/css',
-            '@js': '/resources/js',
-        },
-    },
+	resolve: {
+		alias: {
+			'@css': '/resources/css',
+			'@landing-css': '/resources/css/landing-page',
+			'@js': '/resources/js',
+		},
+	},
+	server: {
+		host: host,
+		port: 5173,
+		// cors: true,
+		// strictPort: true,
+		// https: false,
+		hmr: {
+			host: host,
+			protocol: 'ws',
+		},
+	},
 });
