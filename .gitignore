@@ -27,3 +27,4 @@ yarn-error.log
 docker-compose.yaml
 Dockerfile
 /public/images
+/resources/views/landing-page/page/pelayanan/test*

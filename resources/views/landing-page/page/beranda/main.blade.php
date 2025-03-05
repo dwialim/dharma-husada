@@ -11,12 +11,10 @@
 	<section id="hero" class="section p-0 m-0">
 		<div id="owl-demo" class="owl-carousel owl-theme py-3">
 			<div class="item rounded responsive img-thumbnail">
-				<img src="{{asset('images/rs/DSC0245333.jpg')}}" alt="">
+				<img src="{{asset('images/rs/slide-1.jpg')}}" alt="">
 			</div>
 			<div class="item rounded responsive img-thumbnail">
-				{{-- <img src="https://images.unsplash.com/photo-1566577134624-6f6cc4bb272b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> --}}
-				{{-- <img src="https://images.unsplash.com/photo-1519819286236-0b3c6506e475?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> --}}
-				<img src="{{asset('images/rs/slide-1.jpg')}}" alt="">
+				<img src="{{asset('images/rs/DSC0245333.jpg')}}" alt="">
 			</div>
 			{{-- <div class="item rounded responsive img-thumbnail">
 				<img src="https://images.unsplash.com/photo-1584824486516-0555a07fc511?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
@@ -24,7 +22,7 @@
 		</div>
 	</section><!-- /Hero Section -->
 
-	<section id="sambutan" class="sambutan section">
+	<section id="sambutan" class="sambutan section poppins">
 
 		<div class="container">
 			<div class="row gy-4 gx-5 align-items-stretch">
@@ -191,7 +189,7 @@
 		</div>
 	</section> --}}
 
-	<section id="doctors" class="doctors section">
+	<section id="doctors" class="doctors section poppins">
 		<div class="container section-title" data-aos="fade-up">
 			<h2>Dokter</h2>
 		</div>
@@ -200,17 +198,50 @@
 			<div class="row gy-4">
 				@foreach ($dokter as $key => $item)
 					<div class="col-lg-6" data-aos="fade-up" data-aos-delay="{{$loop->index + 1}}00">
-						<div class="team-member d-flex align-items-start">
-							<div class="pic"><img src="{{asset('images/dokter/' . $item)}}" class="img-fluid" alt=""></div>
-							<div class="member-info">
-								<h4>Nama Dokter</h4>
-								<span>Praktek</span>
-								<p>Jadwal</p>
-								<div class="social">
-									<a href=""><i class="bi bi-twitter-x"></i></a>
-									<a href=""><i class="bi bi-facebook"></i></a>
-									<a href=""><i class="bi bi-instagram"></i></a>
-									<a href=""> <i class="bi bi-linkedin"></i> </a>
+						<div class="team-member
+						{{-- d-flex --}}
+						align-items-start">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="pic mx-auto"><img src="{{asset('images/dokter/' . $item)}}" class="img-fluid" alt=""></div>
+								</div>
+								<div class="col-md-8">
+									<div class="member-info">
+										<h4>Nama Dokter</h4>
+										<span>Poli Klinik</span>
+										<div class="table-responsive">
+											<table class="table table-bordered table-default table-striped text-center table-data-dokter no-wrap">
+												<thead>
+													<tr>
+														<th>Senin</th>
+														<th>Selasa</th>
+														<th>Rabu</th>
+														<th>Kamis</th>
+														<th>Jumat</th>
+														<th>Sabtu</th>
+														<th>Minggu</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="social">
+											<a href=""><i class="bi bi-twitter-x"></i></a>
+											<a href=""><i class="bi bi-facebook"></i></a>
+											<a href=""><i class="bi bi-instagram"></i></a>
+											<a href=""> <i class="bi bi-linkedin"></i> </a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

@@ -213,7 +213,7 @@ hr {
 	font-weight: 500;
 }
 
-.doctors .team-member span::after {
+/* .doctors .team-member span::after {
 	content: "";
 	position: absolute;
 	display: block;
@@ -222,7 +222,7 @@ hr {
 	background: color-mix(in srgb, var(--default-color), transparent 85%);
 	bottom: 0;
 	left: 0;
-}
+} */
 
 @media (max-width: 468px) {
 	.doctors .team-member span::after {

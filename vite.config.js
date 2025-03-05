@@ -11,7 +11,8 @@ export default defineConfig({
 			input: [
 				'resources/css/landing-page/app.css',
 				'resources/css/beranda.css',
-				'resources/js/app.js',
+				'resources/js/landing-page/app.js',
+				// 'resources/js/app.js',
 			],
 			refresh: [
 				'app/Http/Controllers/**',
@@ -26,6 +27,7 @@ export default defineConfig({
 		alias: {
 			'@css': '/resources/css',
 			'@landing-css': '/resources/css/landing-page',
+			'@landing-js': '/resources/js/landing-page',
 			'@js': '/resources/js',
 		},
 	},

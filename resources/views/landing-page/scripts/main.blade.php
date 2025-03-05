@@ -10,6 +10,7 @@
 <!-- Main JS File -->
 <script src="{{asset('assets/js/main.js')}}"></script>
 
-@vite(['resources/js/app.js'])
+{{-- @vite(['resources/js/app.js']) --}}
+@vite(['resources/js/landing-page/app.js'])
 
 @stack('scripts')

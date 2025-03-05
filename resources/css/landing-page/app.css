@@ -1,4 +1,5 @@
 @import "@css/fonts/poppins";
+@import "@css/fonts/courier-prime";
 @import "@css/fonts/size";
 
 /*--------------------------------------------------------------
@@ -14,7 +15,7 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
-	--background-color: #ffffff; /* Background color for the entire website, including individual sections */
+	--background-color: #fafafa; /* Background color for the entire website, including individual sections */
 	--default-color: #444444; /* Default color used for the majority of the text content across the entire website */
 	--heading-color: #2c4964; /* Color for headings, subheadings and title throughout the website */
 	--accent-color: #1977cc; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
@@ -52,15 +53,13 @@
 }
 
 :root {
-	/* --background-color: #FBC2EB;
-	--background-color: #A6C1EE; */
 	--color-pink: #FBC2EB;
 	--color-purple: #A6C1EE;
 	--fs-default: 14px;
 }
 
 * {
-	font-family: "Poppins", sans-serif;
+	/* font-family: "Poppins", sans-serif; */
 }
 
 .grid-center {
@@ -87,6 +86,31 @@
 	line-height: 1;
 	margin-bottom: 25px;
 	justify-content: center;
+}
+
+.footer .container {
+	display: grid;
+	gap: 4em;
+}
+
+.footer #container-time {
+	display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.footer #container-time #data-time {
+	font-weight: 900;
+}
+
+.footer #container-time .gradient {
+	/* color: var(--fgColor-done, var(--color-done-fg)); */
+    /* background: linear-gradient(260deg, #3d67ff 0%, #9773ff 50%, #efceff 80%), #fff; */
+	background: linear-gradient(146deg, #0076e0 0%, #00abf0 50%, #00e0f5 80%), #fff;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .footer .footer-about .logo img {
@@ -281,4 +305,34 @@
 
 .text-justify {
 	text-align: justify;
+}
+
+.poli-klinik-name {
+	color: var(--nav-hover-color);
+}
+
+.no-wrap{
+	white-space: nowrap;
+}
+
+/* width */
+.table-responsive::-webkit-scrollbar {
+	height: 5px;
+}
+
+/* Track */
+.table-responsive::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 10px;
+}
+
+/* Handle */
+.table-responsive::-webkit-scrollbar-thumb {
+	background: var(--accent-color);
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+.table-responsive::-webkit-scrollbar-thumb:hover {
+	background: var(--heading-color);
 }

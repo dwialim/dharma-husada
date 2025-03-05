@@ -1,7 +1,12 @@
 <footer id="footer" class="footer light-background">
 
-	<div class="container footer-top pb-3 poppins-semibold">
-		<div class="row gy-4">
+	<div class="container footer-top pb-3">
+		<div class="row">
+			<div class="col-lg-6 mx-auto fs-25 text-center courier-prime-bold" id="container-time">
+				<span id="data-date"></span> <b id="data-time" class="gradient">{{ date('H:i:s') }}</b>
+			</div>
+		</div>
+		<div class="row gy-4 poppins-semibold">
 			{{-- <div class="col-lg-4 col-md-6 footer-about">
 				<a href="{{route('beranda.main')}}" class="logo d-flex align-items-center">
 					<span class="sitename">Dharma Husada</span>

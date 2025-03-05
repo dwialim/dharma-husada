@@ -39,7 +39,7 @@
 					</li>
 					<li class="dropdown"><a href="javascript:void(0)" class="fs-4 fw-bold {{$prefix == 'pelayanan' ? 'active' : ''}}" data-name="{{$prefix}}"><span>Pelayanan</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
 						<ul>
-							<li><a href="javascript:void(0)" class="fs-5">Jadwal Poli Klinik</a></li>
+							<li><a href="{{route('pelayanan.jadwalPoli')}}" class="fs-5">Jadwal Poli Klinik</a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a href="javascript:void(0)" class="fs-4 fw-bold {{$prefix == 'informasi' ? 'active' : ''}}" data-name="{{$prefix}}"><span>Informasi</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>

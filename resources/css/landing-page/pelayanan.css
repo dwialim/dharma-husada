@@ -1,0 +1,57 @@
+.jadwal-poli-klinik .card {
+	border-top: 5px solid var(--accent-color);
+	border-radius: 10px 10px 5px 5px;
+}
+
+.jadwal-poli-klinik .card .container-button-search {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.jadwal-poli-klinik .card {
+	/* display: grid; */
+	gap: 2em;
+}
+
+.jadwal-poli-klinik .card .container-input-search {
+	display: grid;
+	gap: 0.5em;
+}
+
+.jadwal-poli-klinik .card .title {
+	display: grid;
+	gap: 0.5em;
+	/* background-color: var(--accent-color); */
+	background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+	color: var(--contrast-color);
+	padding: 0.7em 0em;
+	font-weight: bolder;
+}
+
+.jadwal-poli-klinik .card .container-data-dokter {
+	display: flex;
+	align-items: center;
+}
+
+table.table-data-dokter {
+	/* display: block; */
+	/* width: 100%;
+	overflow-x: auto;
+	white-space: nowrap; */
+}
+
+table.table-data-dokter tbody {
+	/* display: table; */
+}
+
+.jadwal-poli-klinik .card .container-data-dokter .pic {
+	overflow: hidden;
+	position: relative;;
+	/* width: 150px; */
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+}
