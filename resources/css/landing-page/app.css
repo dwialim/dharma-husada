@@ -1,5 +1,6 @@
-@import "@css/fonts/poppins";
 @import "@css/fonts/courier-prime";
+@import "@css/fonts/marcellus";
+@import "@css/fonts/poppins";
 @import "@css/fonts/size";
 
 /*--------------------------------------------------------------
@@ -58,6 +59,16 @@
 	--fs-default: 14px;
 }
 
+@keyframes fadeIn {
+	0% {
+		opacity: 0
+	}
+
+	100% {
+		opacity: 1
+	}
+}
+
 * {
 	/* font-family: "Poppins", sans-serif; */
 }
@@ -66,6 +77,28 @@
 	display: grid;
 	align-content: center;
 }
+
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+	color: var(--default-color);
+	background-color: var(--background-color);
+	padding: 60px 0;
+	scroll-margin-top: 72px;
+	overflow: clip;
+}
+
+@media (max-width: 1199px) {
+
+	section,
+	.section {
+		scroll-margin-top: 60px;
+	}
+}
+
 
 /*--------------------------------------------------------------
 # Global Footer

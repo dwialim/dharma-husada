@@ -47,85 +47,244 @@
 							<div class="col-md-12 container-input-search" id="container-input-search">
 								<center>Berikut adalah Jadwal Rutin, <span class="text-danger">Jadwal bisa berubah sewaktu-waktu</span></center>
 								<div class="px-4 py-3 text-center">
-									<div><i>Cari Dokter / Klinik disini :</i></div>
+									<div><h3><i>Cari Dokter / Klinik disini :</i></h3></div>
 									<input type="text" class="form-control" id="cari-jadwal" placeholder="Cari disini..." autocomplete="off">
 								</div>
 							</div>
 						</div><!-- End search form -->
 
-						<!-- Display dokter & klinik -->
-						<div class="title v-find courier-prime-bold rounded"><span class="text-center fs-20">Fisioterapi</span></div>
-						<div class="row v-find container-data-dokter" data-filter="fisioterapi | dr sandra">
-							<div class="col-md-3">
-								<div class="pic mx-auto"><img src="{{asset('images/dokter/dr Krisna.jpg')}}" class="img-fluid" alt=""></div>
+						@foreach ($jadwal as $key => $items)
+							<div class="row">
+								<div class="col-md-12">
+									<div class="title v-find courier-prime-bold rounded"><span class="text-center fs-20">{{$items->poli}}</span></div>
+									@foreach ($items->dokter as $dokter)
+									<div class="row v-find container-data-dokter" data-filter="{{strtolower($items->poli)}} | {{strtolower($dokter->nama)}}">
+										<div class="col-md-3">
+											<div class="pic mx-auto"><img src="{{asset('images/dokter/' . $dokter->gambar)}}" class="img-fluid" alt=""></div>
+										</div>
+										<div class="col-md-9 p-5">
+											<h4 class="courier-prime-bold">{{$dokter->nama}}</h4>
+											<h5 class="poli-klinik-name mb-4">{{$items->poli}}</h5>
+											<div class="table-responsive">
+												<table class="table table-striped table-bordered text-center table-data-dokter no-wrap">
+													<thead>
+														<tr>
+															<th>Senin</th>
+															<th>Selasa</th>
+															<th>Rabu</th>
+															<th>Kamis</th>
+															<th>Jumat</th>
+															<th>Sabtu</th>
+															<th>Minggu</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+														<td>08:00 - 15:00</td>
+														<td>08:00 - 15:00</td>
+														<td>-</td>
+														<td>08:00 - 15:00</td>
+														<td>-</td>
+														<td>08:00 - 15:00</td>
+														<td>08:00 - 15:00</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+									@endforeach
+								</div>
 							</div>
-							<div class="col-md-9 p-3">
-								<h4>Dr Sandra</h4>
-								<h5 class="poli-klinik-name mb-4">Fisioterapi</h5>
-								<div class="table-responsive">
-									<table class="table table-striped table-bordered text-center table-data-dokter no-wrap">
-										<thead>
-											<tr>
-												<th>Senin</th>
-												<th>Selasa</th>
-												<th>Rabu</th>
-												<th>Kamis</th>
-												<th>Jumat</th>
-												<th>Sabtu</th>
-												<th>Minggu</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-											  <td>08:00 - 15:00</td>
-											  <td>08:00 - 15:00</td>
-											  <td>-</td>
-											  <td>08:00 - 15:00</td>
-											  <td>-</td>
-											  <td>08:00 - 15:00</td>
-											  <td>08:00 - 15:00</td>
-											</tr>
-										</tbody>
-									</table>
+						@endforeach
+						<!-- Display dokter & klinik -->
+						{{-- <div class="row">
+							<div class="col-md-12">
+								<div class="title v-find courier-prime-bold rounded"><span class="text-center fs-20">Fisioterapi</span></div>
+								<div class="row v-find container-data-dokter" data-filter="fisioterapi | dr sandra">
+									<div class="col-md-3">
+										<div class="pic mx-auto"><img src="{{asset('images/dokter/dr Krisna.jpg')}}" class="img-fluid" alt=""></div>
+									</div>
+									<div class="col-md-9 p-5">
+										<h4 class="courier-prime-bold">Dr Sandra</h4>
+										<h5 class="poli-klinik-name mb-4">Fisioterapi</h5>
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center table-data-dokter no-wrap">
+												<thead>
+													<tr>
+														<th>Senin</th>
+														<th>Selasa</th>
+														<th>Rabu</th>
+														<th>Kamis</th>
+														<th>Jumat</th>
+														<th>Sabtu</th>
+														<th>Minggu</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="row v-find container-data-dokter" data-filter="fisioterapi | dr sandra">
+									<div class="col-md-3">
+										<div class="pic mx-auto"><img src="{{asset('images/dokter/dr Krisna.jpg')}}" class="img-fluid" alt=""></div>
+									</div>
+									<div class="col-md-9 p-5">
+										<h4 class="courier-prime-bold">Dr Sandra</h4>
+										<h5 class="poli-klinik-name mb-4">Fisioterapi</h5>
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center table-data-dokter no-wrap">
+												<thead>
+													<tr>
+														<th>Senin</th>
+														<th>Selasa</th>
+														<th>Rabu</th>
+														<th>Kamis</th>
+														<th>Jumat</th>
+														<th>Sabtu</th>
+														<th>Minggu</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="row v-find container-data-dokter" data-filter="fisioterapi | dr sandra">
+									<div class="col-md-3">
+										<div class="pic mx-auto"><img src="{{asset('images/dokter/dr Krisna.jpg')}}" class="img-fluid" alt=""></div>
+									</div>
+									<div class="col-md-9 p-5">
+										<h4 class="courier-prime-bold">Dr Sandra</h4>
+										<h5 class="poli-klinik-name mb-4">Fisioterapi</h5>
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center table-data-dokter no-wrap">
+												<thead>
+													<tr>
+														<th>Senin</th>
+														<th>Selasa</th>
+														<th>Rabu</th>
+														<th>Kamis</th>
+														<th>Jumat</th>
+														<th>Sabtu</th>
+														<th>Minggu</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="title v-find courier-prime-bold rounded"><span class="text-center fs-20">Anastesi</span></div>
-						<div class="row v-find container-data-dokter" data-filter="anastesi | dr alex">
-							<div class="col-md-3">
-								<div class="pic mx-auto"><img src="{{asset('images/dokter/dr Krisna.jpg')}}" class="img-fluid" alt=""></div>
-							</div>
-							<div class="col-md-9 p-3">
-								<h4>Dr Alex</h4>
-								<h5 class="poli-klinik-name mb-4">Anastesi</h5>
-								<div class="table-responsive">
-									<table class="table table-striped table-bordered text-center table-data-dokter no-wrap">
-										<thead>
-											<tr>
-												<th>Senin</th>
-												<th>Selasa</th>
-												<th>Rabu</th>
-												<th>Kamis</th>
-												<th>Jumat</th>
-												<th>Sabtu</th>
-												<th>Minggu</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-											  <td>08:00 - 15:00</td>
-											  <td>08:00 - 15:00</td>
-											  <td>-</td>
-											  <td>08:00 - 15:00</td>
-											  <td>-</td>
-											  <td>08:00 - 15:00</td>
-											  <td>08:00 - 15:00</td>
-											</tr>
-										</tbody>
-									</table>
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="title v-find courier-prime-bold rounded"><span class="text-center fs-20">Anastesi</span></div>
+								<div class="row v-find container-data-dokter" data-filter="anastesi | dr alex">
+									<div class="col-md-3">
+										<div class="pic mx-auto"><img src="{{asset('images/dokter/dr Krisna.jpg')}}" class="img-fluid" alt=""></div>
+									</div>
+									<div class="col-md-9 p-5">
+										<h4>Dr Alex</h4>
+										<h5 class="poli-klinik-name mb-4">Anastesi</h5>
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center table-data-dokter no-wrap">
+												<thead>
+													<tr>
+														<th>Senin</th>
+														<th>Selasa</th>
+														<th>Rabu</th>
+														<th>Kamis</th>
+														<th>Jumat</th>
+														<th>Sabtu</th>
+														<th>Minggu</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="row v-find container-data-dokter" data-filter="anastesi | dr alex">
+									<div class="col-md-3">
+										<div class="pic mx-auto"><img src="{{asset('images/dokter/dr Krisna.jpg')}}" class="img-fluid" alt=""></div>
+									</div>
+									<div class="col-md-9 p-5">
+										<h4>Dr Alex</h4>
+										<h5 class="poli-klinik-name mb-4">Anastesi</h5>
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered text-center table-data-dokter no-wrap">
+												<thead>
+													<tr>
+														<th>Senin</th>
+														<th>Selasa</th>
+														<th>Rabu</th>
+														<th>Kamis</th>
+														<th>Jumat</th>
+														<th>Sabtu</th>
+														<th>Minggu</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>-</td>
+													  <td>08:00 - 15:00</td>
+													  <td>08:00 - 15:00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div><!-- End display dokter & klinik -->
+						</div> --}}
+						<!-- End display dokter & klinik -->
 					</div>
 				</div>
 			</div>

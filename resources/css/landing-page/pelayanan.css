@@ -11,7 +11,7 @@
 
 .jadwal-poli-klinik .card {
 	/* display: grid; */
-	gap: 2em;
+	/* gap: 1em; */
 }
 
 .jadwal-poli-klinik .card .container-input-search {
@@ -30,20 +30,48 @@
 }
 
 .jadwal-poli-klinik .card .container-data-dokter {
+	position: relative;
 	display: flex;
 	align-items: center;
+	/* visibility: visible;
+	animation-name: fadeIn;
+	border-bottom: 2px dashed rgb(238, 238, 238);
+	padding-bottom: 20px;
+	padding-top: 20px; */
 }
 
-table.table-data-dokter {
-	/* display: block; */
-	/* width: 100%;
-	overflow-x: auto;
-	white-space: nowrap; */
+.jadwal-poli-klinik .card .container-data-dokter:not(:last-child)::before {
+	/* content: "";
+	border-top: 2px dashed color-mix(in srgb, var(--default-color), transparent 80%);
+	position: absolute;
+	left: 3em;
+	right: 3em;
+	z-index: 0; */
+
+
+    content: "";
+    border-top: 2px dashed color-mix(in srgb, var(--default-color), transparent 80%);
+    position: absolute;
+    left: 3em;
+    right: 3em;
+    bottom: 0px; /* Geser ke bawah */
+    z-index: 0;
+
+	/* top: 50%;
+	transform: translateY(-50%); */
+	/* display: flex;
+	align-items: center; */
+	/* visibility: visible;
+	animation-name: fadeIn;
+	border-bottom: 2px dashed rgb(238, 238, 238);
+	padding-bottom: 20px;
+	padding-top: 20px; */
 }
 
-table.table-data-dokter tbody {
-	/* display: table; */
-}
+/* .jadwal-poli-klinik .card .container-data-dokter {
+	display: flex;
+	align-items: center;
+} */
 
 .jadwal-poli-klinik .card .container-data-dokter .pic {
 	overflow: hidden;

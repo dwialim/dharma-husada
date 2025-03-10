@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class BerandaController extends Controller
 {
+	private $menu = 'beranda';
+
 	public function main(Request $request)
 	{
 		$ip = $this->getIp();
@@ -26,6 +28,7 @@ class BerandaController extends Controller
 		];
 
 		$data['dokter'] = collect($arrayDokter)->random(4);
+		$data['menu'] = $this->menu;
 
 		return view('landing-page.page.beranda.main', $data);
 	}

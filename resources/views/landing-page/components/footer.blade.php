@@ -8,7 +8,7 @@
 		</div>
 		<div class="row gy-4 poppins-semibold">
 			{{-- <div class="col-lg-4 col-md-6 footer-about">
-				<a href="{{route('beranda.main')}}" class="logo d-flex align-items-center">
+				<a href="{{route('landing.beranda.main')}}" class="logo d-flex align-items-center">
 					<span class="sitename">Dharma Husada</span>
 				</a>
 				<div class="footer-contact pt-3">
@@ -27,7 +27,7 @@
 			<div class="col-lg-4 col-md-3 d-flex flex-column align-items-center profile">
 				<i class="fa-solid fa-house-medical top"></i>
 				<div class="stats-item footer-links footer-about">
-					<a href="{{route('beranda.main')}}" class="logo d-flex align-items-center">
+					<a href="{{route('landing.beranda.main')}}" class="logo d-flex align-items-center">
 						<span class="sitename">Dharma Husada</span>
 					</a>
 					<div class="footer-contact pt-3">

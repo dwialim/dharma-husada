@@ -1,7 +1,89 @@
 /*--------------------------------------------------------------
 # Slider Section
 --------------------------------------------------------------*/
-.owl-stage-outer {
+.owl-theme .item {
+	height: 55rem;
+}
+
+.owl-theme .item .text-overlay {
+	position: absolute;
+	color: #FFF !important;
+	display: block;
+	z-index: 3;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	width: 100%;
+}
+
+.owl-theme .item .text-overlay h1 {
+    color: #FFF !important;
+}
+
+.fade-in-down {
+	animation: fadeInDown 1s both;
+}
+
+.owl-theme .item img{
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.7;
+}
+
+.owl-theme .owl-nav {
+	position: absolute;
+	width: 100%;
+	top: 43%;
+	padding: 0 2em;
+	display: flex;
+	justify-content: space-between;
+}
+
+.owl-theme .owl-nav [class*=owl-]:hover {
+	background: unset;
+	color: #9a9999 !important;
+}
+
+.owl-theme .owl-nav button {
+	color: #dbdbdb !important;
+}
+
+.owl-theme .owl-nav button:focus-visible {
+	outline: unset;
+}
+
+.owl-theme .text-content h1 {
+	font-size: 55px;
+}
+.owl-theme .text-content p {
+	font-size: 20px;
+}
+
+@media (max-width: 575px) {
+	.owl-theme .item {
+		height: 14rem;
+	}
+
+	.owl-theme .owl-nav {
+		top: 30%;
+		padding: 0 0.8em;
+	}
+}
+
+.owl-dots {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	gap: 5px;
+	width: auto;
+}
+/* .owl-stage-outer {
 	padding: 10px;
 }
 #owl-demo .owl-item {
@@ -40,13 +122,14 @@
 	transform: translateX(-50%);
 	gap: 5px;
 	width: auto;
-}
+} */
 
 /* #sambutan .container { */
 /* border-bottom: 2px solid color-mix(in srgb, var(--default-color), transparent 60%); */
 hr {
 	border-top: 3px solid color-mix(in srgb, var(--default-color), transparent 50%);
 }
+
 
 /*--------------------------------------------------------------
 # Sambutan Section
@@ -56,10 +139,10 @@ hr {
 	flex: 1 0 auto;
 }
 .img-sambutan {
-    border-radius: 50px 5px 10px 10px;
-    box-shadow: 4px 4px 8px #7c7c7c;
-    float: left;
-    margin: 0em 2em 1em 0.2em;
+	border-radius: 50px 5px 10px 10px;
+	box-shadow: 4px 4px 8px #7c7c7c;
+	float: left;
+	margin: 0em 2em 1em 0.2em;
 	height: auto;
 	width: 400px;
 }
@@ -171,7 +254,7 @@ hr {
 	position: relative;;
 	/* width: 150px; */
 	height: 150px;
-    width: 150px;
+	width: 150px;
 	border-radius: 50%;
 	flex-shrink: 0;
 	box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
@@ -180,8 +263,8 @@ hr {
 .doctors .team-member .pic img {
 	transition: ease-in-out 0.3s;
 	position: absolute;
-    width: 100%;
-    height: auto;
+	width: 100%;
+	height: auto;
 }
 
 .doctors .team-member:hover {

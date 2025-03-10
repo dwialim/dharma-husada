@@ -7,9 +7,62 @@ use Illuminate\Http\Request;
 
 class PelayananController extends Controller
 {
+	private $menu = 'pelayanan';
+
 	public function jadwalPoli()
 	{
-		return view('landing-page.page.pelayanan.main');
+		// 'as.png',
+		// 'dr Krisna.jpg',
+		// 'dr. Ahmad Zamah Syari_00000.png',
+		// 'DR. NICHOLAS BIRU.png',
+		// 'dr.danur.png',
+		// 'dr.yuning.png',
+		// 'DR.ZAINUL.png',
+		// 'WhatsApp_Image_2024-12-05_at_12.47.39-removebg-preview.png',
+		// return $data['jadwal']['poli'];
+		$jadwal = [
+			[
+				'poli' => 'Fisioterapi',
+				'dokter' => [
+					[
+						'nama' => 'dr. Alex',
+						'gambar' => 'as.png'
+					],
+					[
+						'nama' => 'dr. Krisna',
+						'gambar' => 'dr Krisna.jpg'
+					],
+					[
+						'nama' => 'dr. Ahmad Zamah Syari',
+						'gambar' => 'dr. Ahmad Zamah Syari_00000.png'
+					],
+				],
+			],
+			[
+				'poli' => 'Anastesi',
+				'dokter' => [
+					[
+						'nama' => 'dr. Danur',
+						'gambar' => 'dr.danur.png'
+					],
+					[
+						'nama' => 'dr. Nicholas',
+						'gambar' => 'DR. NICHOLAS BIRU.png'
+					],
+					// [
+					// 	'nama' => 'dr. Ahmad Zamah Syari',
+					// 	'gambar' => 'dr. Ahmad Zamah Syari_00000.png'
+					// ],
+				],
+			],
+		];
+
+		$data = [
+			'jadwal' => json_decode(json_encode($jadwal)),
+			'menu' => $this->menu
+		];
+
+		return view('landing-page.page.pelayanan.main', $data);
 	}
 
 	public function jadwalDokter()

@@ -9,10 +9,18 @@ export default defineConfig({
 		// tailwindcss(),
 		laravel({
 			input: [
+				'resources/css/app.css',
+				'resources/css/landing-page/informasi/app.css',
+				'resources/css/landing-page/informasi/berita.css',
+				'resources/css/landing-page/informasi/pengumuman.css',
 				'resources/css/landing-page/app.css',
-				'resources/css/beranda.css',
+				'resources/css/landing-page/beranda.css',
+				'resources/css/landing-page/kontak.css',
+				'resources/css/landing-page/pelayanan.css',
+				'resources/js/app.js',
 				'resources/js/landing-page/app.js',
-				// 'resources/js/app.js',
+				'resources/js/landing-page/kontak.js',
+				'resources/js/landing-page/pelayanan.js',
 			],
 			refresh: [
 				'app/Http/Controllers/**',
