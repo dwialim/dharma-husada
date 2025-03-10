@@ -17,6 +17,7 @@ export default defineConfig({
 				'resources/css/landing-page/beranda.css',
 				'resources/css/landing-page/kontak.css',
 				'resources/css/landing-page/pelayanan.css',
+				'resources/css/landing-page/profil.css',
 				'resources/js/app.js',
 				'resources/js/landing-page/app.js',
 				'resources/js/landing-page/kontak.js',
