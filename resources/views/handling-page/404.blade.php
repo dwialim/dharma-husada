@@ -30,7 +30,7 @@
 							<div class="text-center">
 								<h1 class="mt-5"><b>Page Not Found</b></h1>
 								<p class="mt-2 mb-4 text-muted">The page you are looking was moved, removed,<br>renamed, or might never exist!</p>
-								<button type="button" class="btn btn-primary mb-3">Go to home</button>
+								<button type="button" class="btn btn-primary mb-3 btn-back">Back</button>
 							</div>
 						</div>
 					</div>
@@ -41,6 +41,9 @@
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	@vite(['resources/js/app.js'])
+	<script>
+		$(".btn-back").click(() => {window.history.back()})
+	</script>
 </div>
 </body>
 </html>

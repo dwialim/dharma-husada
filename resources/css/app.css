@@ -16,3 +16,11 @@
 	font-weight: bolder !important;
 }
 
+a.disabled {
+	/* pointer-events: none; */
+	cursor: pointer;
+}
+
+a.pointer {
+	cursor: pointer;
+}

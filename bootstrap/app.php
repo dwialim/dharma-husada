@@ -35,7 +35,8 @@ return Application::configure(basePath: dirname(__DIR__))
 				}
 
 				if ($exception->getStatusCode() == 404) {
-					return response()->view("admin.errors.404", [], 404);
+					// return response()->view("admin.errors.404", [], 404);
+					return response()->view("handling-page.404", [], 404);
 				}
 
 				if ($exception->getStatusCode() == 500) {
