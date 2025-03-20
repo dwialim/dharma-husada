@@ -5,7 +5,7 @@
 			<ul class="list-unstyled">
 				<!-- ======= Menu collapse Icon ===== -->
 				<li class="pc-h-item pc-sidebar-collapse">
-					<a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+					<a class="pc-head-link ms-0 pointer" id="sidebar-hide">
 						<i>
 							<svg class="pc-icon">
 								<use xlink:href="#menu"></use>
@@ -14,7 +14,7 @@
 					</a>
 				</li>
 				<li class="pc-h-item pc-sidebar-popup">
-					<a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+					<a class="pc-head-link ms-0 pointer" id="mobile-collapse">
 						<i>
 							<svg class="pc-icon">
 								<use xlink:href="#menu"></use>
@@ -22,7 +22,7 @@
 						</i>
 					</a>
 				</li>
-				<li class="dropdown pc-h-item d-inline-flex d-md-none">
+				{{-- <li class="dropdown pc-h-item d-inline-flex d-md-none">
 					<a class="pc-head-link dropdown-toggle arrow-none m-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 						<i>
 							<svg class="pc-icon">
@@ -38,7 +38,7 @@
 				</li>
 				<li class="pc-h-item d-none d-md-inline-flex">
 					<form class="header-search"><i data-feather="search" class="icon-search"></i> <input type="search" class="form-control" placeholder="Search here. . ."></form>
-				</li>
+				</li> --}}
 			</ul>
 		</div>
 
@@ -111,7 +111,7 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-end pc-h-dropdown lng-dropdown"><a href="#!" class="dropdown-item" data-lng="en"><span>English <small>(UK)</small> </span></a><a href="#!" class="dropdown-item" data-lng="fr"><span>français <small>(French)</small> </span></a><a href="#!" class="dropdown-item" data-lng="ro"><span>Română <small>(Romanian)</small> </span></a><a href="#!" class="dropdown-item" data-lng="cn"><span>中国人 <small>(Chinese)</small></span></a></div>
 				</li> --}}
-				<li class="dropdown pc-h-item">
+				{{-- <li class="dropdown pc-h-item">
 					<a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 						<i>
 							<svg class="pc-icon">
@@ -181,7 +181,7 @@
 						<div class="dropdown-divider"></div>
 						<div class="text-center py-2"><a href="#!" class="link-primary">View all</a></div>
 					</div>
-				</li>
+				</li> --}}
 				{{-- <li class="dropdown pc-h-item">
 					<a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
 						<i>
@@ -254,9 +254,9 @@
 					</a>
 				</li> --}}
 				<li class="dropdown pc-h-item header-user-profile">
-					<a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+					<a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
 						<img src="{{asset('admin-page/assets/images/user/avatar-2.jpg')}}" alt="user-image" class="user-avtar">
-						<span>Dharma Husada</span>
+						<span>{{Auth::check() ? Auth::user()->name : '-'}}</span>
 					</a>
 
 					<div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
@@ -264,10 +264,10 @@
 							<div class="d-flex mb-1">
 								<div class="flex-shrink-0"><img src="{{asset('admin-page/assets/images/user/avatar-2.jpg')}}" alt="user-image" class="user-avtar wid-35"></div>
 								<div class="flex-grow-1 ms-3">
-									<h6 class="mb-1">Dharma Husada</h6>
-									<span>Admin RS</span>
+									<h6 class="mb-1">{{Auth::check() ? Auth::user()->name : '-'}}</h6>
+									<span>{{Auth::check() ? ucfirst(Auth::user()->level) : '-'}}</span>
 								</div>
-								<a href="#!" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>
+								<a class="pc-head-link bg-transparent pointer btn-logout" data-url-destroy-token="{{route('admin.auth.destroyToken')}}" data-url-login="{{route('admin.auth.main')}}"><i class="ti ti-power text-danger"></i></a>
 							</div>
 						</div>
 
@@ -286,11 +286,11 @@
 
 						<div class="tab-content" id="mysrpTabContent">
 							<div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">
-								<a href="#!" class="dropdown-item">
+								<a href="javascript:void(0)" class="dropdown-item">
 									<i class="ti ti-edit-circle"></i> <span>Edit Profile</span>
 								</a>
 
-								<a href="#!" class="dropdown-item">
+								<a href="javascript:void(0)" class="dropdown-item">
 									<i class="ti ti-user"></i> <span>View Profile</span>
 								</a>
 
@@ -302,7 +302,7 @@
 									<i class="ti ti-wallet"></i> <span>Billing</span>
 								</a> --}}
 
-								<a href="#!" class="dropdown-item">
+								<a class="dropdown-item pointer btn-logout" data-url-destroy-token="{{route('admin.auth.destroyToken')}}" data-url-login="{{route('admin.auth.main')}}">
 									<i class="ti ti-power"></i> <span>Logout</span>
 								</a>
 							</div>

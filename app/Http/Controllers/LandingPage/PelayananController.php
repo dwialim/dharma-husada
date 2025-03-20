@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\LandingPage;
 
 use App\Http\Controllers\Controller;
+use App\Models\JadwalDokterKlinik;
+use App\Models\MasterPoliKlinik;
 use Illuminate\Http\Request;
 
 class PelayananController extends Controller
@@ -20,44 +22,51 @@ class PelayananController extends Controller
 		// 'DR.ZAINUL.png',
 		// 'WhatsApp_Image_2024-12-05_at_12.47.39-removebg-preview.png',
 		// return $data['jadwal']['poli'];
-		$jadwal = [
-			[
-				'poli' => 'Fisioterapi',
-				'dokter' => [
-					[
-						'nama' => 'dr. Alex',
-						'gambar' => 'as.png'
-					],
-					[
-						'nama' => 'dr. Krisna',
-						'gambar' => 'dr Krisna.jpg'
-					],
-					[
-						'nama' => 'dr. Ahmad Zamah Syari',
-						'gambar' => 'dr. Ahmad Zamah Syari_00000.png'
-					],
-				],
-			],
-			[
-				'poli' => 'Anastesi',
-				'dokter' => [
-					[
-						'nama' => 'dr. Danur',
-						'gambar' => 'dr.danur.png'
-					],
-					[
-						'nama' => 'dr. Nicholas',
-						'gambar' => 'DR. NICHOLAS BIRU.png'
-					],
-					// [
-					// 	'nama' => 'dr. Ahmad Zamah Syari',
-					// 	'gambar' => 'dr. Ahmad Zamah Syari_00000.png'
-					// ],
-				],
-			],
-		];
+		$poliKlinik = MasterPoliKlinik::all(['id', 'nama']);
+		$jadwal = MasterPoliKlinik::has('jadwal')
+		->with(['jadwal.dokter', 'jadwal.detail'])
+		->get();
+		// $jadwal = JadwalDokterKlinik::with(['dokter:id,nama', 'poli_klinik:id,nama', 'detail:id,jadwal_dokter_klinik_id,hari,hari_num,waktu_awal,waktu_akhir'])->get(['id','poli_klinik_id','dokter_id']);
+		// $jadwal = MasterPoliKlinik::with([''])
+		// $jadwal = [
+		// 	[
+		// 		'poli' => 'Fisioterapi',
+		// 		'dokter' => [
+		// 			[
+		// 				'nama' => 'dr. Alex',
+		// 				'gambar' => 'as.png'
+		// 			],
+		// 			[
+		// 				'nama' => 'dr. Krisna',
+		// 				'gambar' => 'dr Krisna.jpg'
+		// 			],
+		// 			[
+		// 				'nama' => 'dr. Ahmad Zamah Syari',
+		// 				'gambar' => 'dr. Ahmad Zamah Syari_00000.png'
+		// 			],
+		// 		],
+		// 	],
+		// 	[
+		// 		'poli' => 'Anastesi',
+		// 		'dokter' => [
+		// 			[
+		// 				'nama' => 'dr. Danur',
+		// 				'gambar' => 'dr.danur.png'
+		// 			],
+		// 			[
+		// 				'nama' => 'dr. Nicholas',
+		// 				'gambar' => 'DR. NICHOLAS BIRU.png'
+		// 			],
+		// 			// [
+		// 			// 	'nama' => 'dr. Ahmad Zamah Syari',
+		// 			// 	'gambar' => 'dr. Ahmad Zamah Syari_00000.png'
+		// 			// ],
+		// 		],
+		// 	],
+		// ];
 
 		$data = [
+			'poliKlinik' => $poliKlinik,
 			'jadwal' => json_decode(json_encode($jadwal)),
 			'menu' => $this->menu
 		];
@@ -68,6 +77,18 @@ class PelayananController extends Controller
 	public function jadwalDokter()
 	{
 		return view('landing-page.page.pelayanan.main');
+	}
+
+	public function searchDokter(Request $request)
+	{
+		$jadwal = MasterPoliKlinik::has('jadwal')
+		->with(['jadwal.dokter', 'jadwal.detail'])
+		->get();
+
+		if (count($jadwal))
+			return response()->json(['message' => 'Belum ada jadwal dokter', 'data' => $jadwal], 200);
+
+		return response()->json(['message' => 'Ok', 'data' => $jadwal], 200);
 	}
 
 	public function testing(Request $request)

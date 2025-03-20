@@ -1,7 +1,9 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
-@import "@css/animation";
+@import "@c-animation/app";
+
+@import "@c-fonts/size";
 
 .no-select {
 	-webkit-touch-callout: none; /* iOS Safari */
@@ -21,6 +23,23 @@ a.disabled {
 	cursor: pointer;
 }
 
+.pointer{
+	cursor: pointer;
+}
+
 a.pointer {
 	cursor: pointer;
+}
+
+.item-center {
+	display: flex;
+    align-items: center;
+}
+
+.hide {
+	display: none !important;
+}
+
+.op-0 {
+	opacity: 0;
 }

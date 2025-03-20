@@ -1,3 +1,7 @@
+.container-jadwal-poli-klinik {
+	width: 93%;
+}
+
 .jadwal-poli-klinik .card {
 	border-top: 5px solid var(--accent-color);
 	border-radius: 10px 10px 5px 5px;
@@ -49,13 +53,13 @@
 	z-index: 0; */
 
 
-    content: "";
-    border-top: 2px dashed color-mix(in srgb, var(--default-color), transparent 80%);
-    position: absolute;
-    left: 3em;
-    right: 3em;
-    bottom: 0px; /* Geser ke bawah */
-    z-index: 0;
+	content: "";
+	border-top: 2px dashed color-mix(in srgb, var(--default-color), transparent 80%);
+	position: absolute;
+	left: 3em;
+	right: 3em;
+	bottom: 0px; /* Geser ke bawah */
+	z-index: 0;
 
 	/* top: 50%;
 	transform: translateY(-50%); */
@@ -82,4 +86,10 @@
 	border-radius: 50%;
 	flex-shrink: 0;
 	box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 575px) {
+	.container-data-dokter{
+		margin-top: 2.5em;
+	}
 }

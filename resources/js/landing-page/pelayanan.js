@@ -7,7 +7,7 @@ $(() => {
 		9, 16, 17, 18, 20, 33, 34, 35, 36, 37, 38, 39, 40, 44, 45, 91,
 		112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 255
 	])
-	$("#cari-jadwal").setRules("a-zA-Z0-9,.").on('keyup', function(e) {
+	$("#cari-jadwal").setRules("a-zA-Z0-9,. ").on('keyup', function(e) {
 		let string = $(this).val().toLowerCase()
 		// .replace(/[\"\/\`\:\~\!\@\#\$\%\^\&\*\=\;\|\{\}\[\]\<\>\?]/g,'')
 

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-// 	return view('landing-page.main');
-// 	// return view('test');
-// 	// return 'halo';
-// });
+Route::controller(TestController::class)
+->as('test.')
+->group(function () {
+	Route::get('test', 'main');
+	Route::post('form', 'form')->name('form');
+});

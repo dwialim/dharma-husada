@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\LandingPage\Profil;
 
 use App\Http\Controllers\Controller;
+use App\Models\TugasFungsi;
 use Illuminate\Http\Request;
 
 class TugasFungsiController extends Controller
@@ -11,6 +12,6 @@ class TugasFungsiController extends Controller
 
 	public function main(Request $request)
 	{
-		return view('landing-page.page.profil.tugas-pokok', ['menu' => $this->menu]);
+		return view('landing-page.page.profil.tugas-pokok', ['menu' => $this->menu, 'data' => TugasFungsi::first()]);
 	}
 }

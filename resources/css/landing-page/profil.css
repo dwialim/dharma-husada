@@ -1,17 +1,22 @@
 .visi-misi .content ul {
-    list-style: none;
-    padding: 0;
+	/* list-style: none; */
+	/* padding: 0; */
+	/* padding: 0 0 0 2em; */
+}
+
+.remove-style {
+	list-style: none;
 }
 
 .visi-misi .content ul li {
-    padding: 10px 0 0 28px;
-    position: relative;
+	padding: 10px 0 0 28px;
+	position: relative;
 }
 
 .visi-misi .content ul i {
-    left: 0;
-    top: 5px;
-    position: absolute;
-    font-size: 20px;
-    color: #1bbd36;
+	left: 0;
+	top: 5px;
+	position: absolute;
+	font-size: 20px;
+	color: #1bbd36;
 }

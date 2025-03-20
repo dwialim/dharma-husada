@@ -12,7 +12,9 @@
 			{{-- <div class="card p-5" style="box-shadow: 0px 0px 10px 0px #d8d8d8;" data-aos="fade-up" data-aos-delay="200"> --}}
 				<div class="row gy-4">
 					<div class="col-lg-12">
-						<img src="{{asset('images/organization.svg')}}" alt="" width="100%">
+						@if ($data && $data->gambar && file_exists( public_path() .'/storage/'. $data->gambar))
+							<img src="{{asset('storage/' . $data->gambar)}}" alt="" width="100%">
+						@endif
 						{{-- <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
 							<i class="bi bi-geo-alt flex-shrink-0"></i>
 							<div>

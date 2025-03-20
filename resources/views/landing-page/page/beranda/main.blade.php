@@ -90,11 +90,14 @@
 						align-items-start">
 							<div class="row">
 								<div class="col-md-4">
-									<div class="pic mx-auto"><img src="{{asset('images/dokter/' . $item)}}" class="img-fluid" alt=""></div>
+									@php
+										$image = !empty($item->gambar) && Storage::exists($item->gambar) ? "storage/$item->gambar" : 'doctor-default.png' ;
+									@endphp
+									<div class="pic mx-auto"><img src="{{asset($image)}}" class="img-fluid" alt=""></div>
 								</div>
 								<div class="col-md-8">
 									<div class="member-info">
-										<h4>Nama Dokter</h4>
+										<h4>{{$item->nama}}</h4>
 										<span>Poli Klinik</span>
 										<div class="table-responsive">
 											<table class="table table-bordered table-default table-striped text-center table-data-dokter no-wrap">
@@ -123,10 +126,10 @@
 											</table>
 										</div>
 										<div class="social">
-											<a href=""><i class="bi bi-twitter-x"></i></a>
-											<a href=""><i class="bi bi-facebook"></i></a>
-											<a href=""><i class="bi bi-instagram"></i></a>
-											<a href=""> <i class="bi bi-linkedin"></i> </a>
+											@if($item->twitter) <a href="{{$item->twitter}}"><i class="bi bi-twitter-x"></i></a> @endif
+											@if($item->facebook) <a href="{{$item->facebook}}"><i class="bi bi-facebook"></i></a> @endif
+											@if($item->instagram) <a href="{{$item->instagram}}"><i class="bi bi-instagram"></i></a> @endif
+											@if($item->linkedin) <a href="{{$item->linkedin}}" target="_blank"> <i class="bi bi-linkedin"></i> </a> @endif
 										</div>
 									</div>
 								</div>

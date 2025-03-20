@@ -9,14 +9,18 @@
 
 	@include('admin-page.styles.main')
 </head>
-<body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
+<body id="body-admin" style="display: none;" data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
 	<!-- [ Pre-loader ] start -->
-	<div class="loader-bg">
+	{{-- <div class="loader-bg">
 		<div class="loader-track">
 			<div class="loader-fill"></div>
 		</div>
-	</div>
+	</div> --}}
 	<!-- [ Pre-loader ] End -->
+
+	{{-- Loader --}}
+	@include('partials.loading')
+	{{-- Loader end --}}
 
 	<!-- [ Sidebar Menu ] start -->
 	@include('admin-page.components.sidebar')
@@ -34,9 +38,9 @@
 	</div>
 	<!-- [ Main Content ] end -->
 
-	@include('admin-page.components.footer')
+	{{-- @include('admin-page.components.footer') --}}
 
-	<div class="offcanvas pct-offcanvas offcanvas-end" tabindex="-1" id="offcanvas_pc_layout">
+	{{-- <div class="offcanvas pct-offcanvas offcanvas-end" tabindex="-1" id="offcanvas_pc_layout">
 		<div class="offcanvas-header bg-primary justify-content-between">
 			<h5 class="offcanvas-title text-white">Mantis Customizer</h5>
 			<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -152,7 +156,7 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
 	@include('admin-page.scripts.main')
 </body>

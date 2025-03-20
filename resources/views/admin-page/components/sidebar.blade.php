@@ -1,9 +1,11 @@
 <nav class="pc-sidebar">
 	<div class="navbar-wrapper">
 		<div class="m-header">
-			<a href="../dashboard/index.html" class="b-brand text-primary">
-				<!-- ========   Change your logo from here   ============ --> <img src="{{asset('admin-page/assets/images/logo-dark.svg')}}" class="img-fluid logo-lg" alt="logo">
+			<a href="{{route('admin.dashboard.main')}}" class="b-brand text-primary">
+				{{-- <!-- ========   Change your logo from here   ============ --> <img src="{{asset('admin-page/assets/images/logo-dark.svg')}}" class="img-fluid logo-lg" alt="logo"> --}}
+				<!-- ========   Change your logo from here   ============ --> <img src="{{asset('images/rs/logo-transparan.png')}}" width="50" height="auto" class="img-fluid logo-lg" alt="logo">
 			</a>
+			<span class="ms-3 fs-20">Dharma Husada</span>
 		</div>
 		<div class="navbar-content no-select">
 			<ul class="pc-navbar">
@@ -35,13 +37,13 @@
 						<span class="pc-mtext" data-i18n="Master Data">Master Data</span> <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
 					</a>
 					<ul class="pc-submenu">
-						<li class="pc-item"><a class="pc-link" href="../admins/course-dashboard.html" data-i18n="Dokter">Dokter</a></li>
-						<li class="pc-item"><a class="pc-link" href="../admins/course-dashboard.html" data-i18n="Poli Klinik">Poli Klinik</a></li>
+						<li class="pc-item"><a class="pc-link" href="{{route('admin.masterData.dokter.main')}}" data-i18n="Dokter">Dokter</a></li>
+						<li class="pc-item"><a class="pc-link" href="{{route('admin.masterData.poliKlinik.main')}}" data-i18n="Poli Klinik">Poli Klinik</a></li>
 					</ul>
 				</li>
 
 				<li class="pc-item">
-					<a href="javascript:void(0)" class="pc-link">
+					<a href="{{route('admin.profilRS.main')}}" class="pc-link">
 						<span class="pc-micon">
 							<svg class="pc-icon">
 								<use xlink:href="#user"></use>
@@ -54,11 +56,11 @@
 
 				<!-- Profil -->
 				<li class="pc-item pc-caption">
-					<label data-i18n="Other">Profil</label>
+					<label data-i18n="Profil">Profil</label>
 				</li>
 
 				<li class="pc-item">
-					<a href="javascript:void(0)" class="pc-link">
+					<a href="{{route('admin.strukturOrganisasi.main')}}" class="pc-link">
 						<span class="pc-micon">
 							<svg class="pc-icon">
 								<use xlink:href="#cluster"></use>
@@ -69,7 +71,7 @@
 				</li>
 
 				<li class="pc-item">
-					<a href="javascript:void(0)" class="pc-link">
+					<a href="{{route('admin.tugasFungsi.main')}}" class="pc-link">
 						<span class="pc-micon">
 							<svg class="pc-icon">
 								<use xlink:href="#tool"></use>
@@ -80,7 +82,7 @@
 				</li>
 
 				<li class="pc-item">
-					<a href="javascript:void(0)" class="pc-link">
+					<a href="{{route('admin.visiMisi.main')}}" class="pc-link">
 						<span class="pc-micon">
 							<svg class="pc-icon">
 								<use xlink:href="#unordered-list"></use>
@@ -93,17 +95,17 @@
 
 				<!-- Pelayanan -->
 				<li class="pc-item pc-caption">
-					<label data-i18n="Other">Pelayanan</label>
+					<label data-i18n="Pelayanan">Pelayanan</label>
 				</li>
 
 				<li class="pc-item">
-					<a href="javascript:void(0)" class="pc-link">
+					<a href="{{route('admin.jadwal.main')}}" class="pc-link">
 						<span class="pc-micon">
 							<svg class="pc-icon">
 								<use xlink:href="#schedule"></use>
 							</svg>
 						</span>
-						<span class="pc-mtext" data-i18n="Jadwal Klinik & Dokter">Jadwal Klinik & Dokter</span>
+						<span class="pc-mtext" data-i18n="Jadwal Dokter Klinik">Jadwal Dokter Klinik</span>
 					</a>
 				</li>
 				<!-- Pelayanan end -->
@@ -114,7 +116,7 @@
 				</li>
 
 				<li class="pc-item">
-					<a href="javascript:void(0)" class="pc-link">
+					<a href="{{route('admin.manajemenInformasi.main')}}" class="pc-link">
 						<span class="pc-micon">
 							<svg class="pc-icon">
 								<use xlink:href="#snippets"></use>
@@ -131,7 +133,7 @@
 				</li>
 
 				<li class="pc-item">
-					<a href="javascript:void(0)" class="pc-link">
+					<a href="{{route('admin.waktuOperasional.main')}}" class="pc-link">
 						<span class="pc-micon">
 							<svg class="pc-icon">
 								<use xlink:href="#field-time"></use>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\LandingPage;
 
 use App\Http\Controllers\Controller;
+use App\Models\MasterDokter;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -12,7 +13,7 @@ class BerandaController extends Controller
 	public function main(Request $request)
 	{
 		$ip = $this->getIp();
-		if ($ip != '103.189.201.88')
+		if ($ip != '103.189.201.14')
 			\Log::debug($ip);
 
 		$arrayDokter = [
@@ -27,7 +28,7 @@ class BerandaController extends Controller
 			'WhatsApp_Image_2024-12-05_at_12.47.39-removebg-preview.png',
 		];
 
-		$data['dokter'] = collect($arrayDokter)->random(4);
+		$data['dokter'] = MasterDokter::inRandomOrder()->limit(4)->get();
 		$data['menu'] = $this->menu;
 
 		return view('landing-page.page.beranda.main', $data);

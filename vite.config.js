@@ -9,7 +9,32 @@ export default defineConfig({
 		// tailwindcss(),
 		laravel({
 			input: [
+				/** Root */
 				'resources/css/app.css',
+				'resources/js/app.js',
+				/** Root end */
+
+				/** Admin page */
+				'resources/css/admin-page/app.css',
+				'resources/css/admin-page/master-data/dokter.css',
+				'resources/css/admin-page/profil/visi-misi.css',
+
+				'resources/js/admin-page/master-data/dokter.js',
+				'resources/js/admin-page/master-data/poli-klinik.js',
+				'resources/js/admin-page/master-data/profil-rs.js',
+				'resources/js/admin-page/profil/struktur-organisasi.js',
+				'resources/js/admin-page/profil/tugas-fungsi.js',
+				'resources/js/admin-page/profil/visi-misi.js',
+				'resources/js/admin-page/app.js',
+				'resources/js/admin-page/jadwal-dokter-klinik.js',
+				/** Admin page end */
+
+				/** Auth */
+				'resources/css/auth/app.css',
+				'resources/js/auth/app.js',
+				/** Auth end */
+
+				/** Landing page */
 				'resources/css/landing-page/informasi/app.css',
 				'resources/css/landing-page/informasi/berita.css',
 				'resources/css/landing-page/informasi/pengumuman.css',
@@ -18,13 +43,14 @@ export default defineConfig({
 				'resources/css/landing-page/kontak.css',
 				'resources/css/landing-page/pelayanan.css',
 				'resources/css/landing-page/profil.css',
-				'resources/js/app.js',
+
 				'resources/js/landing-page/app.js',
 				'resources/js/landing-page/kontak.js',
 				'resources/js/landing-page/pelayanan.js',
+				/** Landing page end */
 			],
 			refresh: [
-				'app/Http/Controllers/**',
+				// 'app/Http/Controllers/**',
 				'resources/routes/**',
 				'routes/**',
 				'resources/views/**',
@@ -34,10 +60,18 @@ export default defineConfig({
 	],
 	resolve: {
 		alias: {
-			'@css': '/resources/css',
-			'@landing-css': '/resources/css/landing-page',
-			'@landing-js': '/resources/js/landing-page',
+			'@public': '/public',
+
+			/** Components */
+			'@c-animation': '/resources/css/components/animation',
+			'@c-fonts': '/resources/css/components/fonts',
+			'@c-hover': '/resources/css/components/hover',
+			'@j-loader': '/resources/js/components/loader',
+			/** Components end */
+
+			// '@css': '/resources/css',
 			'@js': '/resources/js',
+			'@module': '/resources/js/module',
 		},
 	},
 	server: {

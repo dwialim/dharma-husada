@@ -1,0 +1,14 @@
+.auth-header.test {
+	position: absolute !important;
+    top: 3em;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.auth-main .auth-wrapper .auth-form {
+	justify-content: center !important;
+}
+
+.auth-main .auth-wrapper.v3 .auth-form {
+	background: unset;
+}

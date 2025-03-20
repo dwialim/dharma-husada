@@ -1,7 +1,6 @@
-@import "@css/fonts/courier-prime";
-@import "@css/fonts/marcellus";
-@import "@css/fonts/poppins";
-@import "@css/fonts/size";
+@import "@c-fonts/courier-prime";
+@import "@c-fonts/marcellus";
+@import "@c-fonts/poppins";
 
 /*--------------------------------------------------------------
 # Font & Color Variables
