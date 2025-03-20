@@ -5,6 +5,9 @@ import laravel from 'laravel-vite-plugin';
 let host = 'dev.dwialim.web.id'
 
 export default defineConfig({
+	build: {
+	  target: 'esnext' // atau 'es2022'
+	},
 	plugins: [
 		// tailwindcss(),
 		laravel({
