@@ -1,3 +1,11 @@
+// axios.defaults.baseURL = axios.defaults.baseURL.replace('http://', 'https://');
+axios.interceptors.request.use(config => {
+	if (config.url.startsWith('http://')) {
+		config.url = config.url.replace('http://', 'https://');
+	}
+	return config;
+});
+
 const postRequest = (route, object={}) => {
 	const sendRequest = axios.post(route, object)
 	.then((response) => {return response})
