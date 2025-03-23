@@ -19,8 +19,8 @@
 	text-align: center;
 	padding: 9px 6px 9px;
 	background-color: rgba(255, 255, 255, 0.73);
-    box-shadow: inset 0px 0px 0px 2px #919191, inset 0px 0px 4px 3px #7bc8ff;
-    border-radius: 7px;
+	box-shadow: inset 0px 0px 0px 2px #919191, inset 0px 0px 4px 3px #7bc8ff;
+	border-radius: 7px;
 	font-weight: bolder;
 }
 
@@ -45,4 +45,15 @@
 
 .card-body .btn {
 	margin-top: auto;
+}
+
+.content-detail .date {
+	background: #1977cc;
+	display: flex;
+	width: 13em;
+	justify-content: center;
+	border: 0px solid;
+	border-radius: 5px;
+	color: white;
+	padding: 5px;
 }

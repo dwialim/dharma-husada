@@ -23,9 +23,9 @@ class PelayananController extends Controller
 		// 'WhatsApp_Image_2024-12-05_at_12.47.39-removebg-preview.png',
 		// return $data['jadwal']['poli'];
 		$poliKlinik = MasterPoliKlinik::all(['id', 'nama']);
-		$jadwal = MasterPoliKlinik::has('jadwal')
-		->with(['jadwal.dokter', 'jadwal.detail'])
-		->get();
+		// $jadwal = MasterPoliKlinik::has('jadwal')
+		// ->with(['jadwal.dokter', 'jadwal.detail'])
+		// ->get();
 		// $jadwal = JadwalDokterKlinik::with(['dokter:id,nama', 'poli_klinik:id,nama', 'detail:id,jadwal_dokter_klinik_id,hari,hari_num,waktu_awal,waktu_akhir'])->get(['id','poli_klinik_id','dokter_id']);
 		// $jadwal = MasterPoliKlinik::with([''])
 		// $jadwal = [
@@ -67,16 +67,36 @@ class PelayananController extends Controller
 
 		$data = [
 			'poliKlinik' => $poliKlinik,
-			'jadwal' => json_decode(json_encode($jadwal)),
+			// 'jadwal' => json_decode(json_encode($jadwal)),
 			'menu' => $this->menu
 		];
 
 		return view('landing-page.page.pelayanan.main', $data);
 	}
 
-	public function jadwalDokter()
+	public function jadwalDokter(Request $request)
 	{
-		return view('landing-page.page.pelayanan.main');
+		$hari = $request->hari;
+		$poli = $request->poli;
+
+		$jadwal = MasterPoliKlinik::has('jadwal')
+		->when($hari, fn($query) =>
+			$query->whereHas('jadwal.detail', fn($q) => $q->where('hari_num', $hari))
+		)
+		->when($poli, fn($query) =>
+			$query->whereHas('jadwal', fn($q) => $q->where('poli_klinik_id', $poli))
+		)
+		->with(['jadwal' => fn($query) =>
+			$query->when($hari, fn($q) => $q->whereHas('detail', fn($d) => $d->where('hari_num', $hari)))
+				->when($poli, fn($q) => $q->where('poli_klinik_id', $poli))
+				->with(['dokter', 'detail'])
+		])
+		->get();
+
+		if (count($jadwal))
+			return response()->json(['message' => 'Ok', 'data' => $jadwal], 200);
+
+		return response()->json(['message' => 'Belum ada jadwal dokter', 'data' => $jadwal], 404);
 	}
 
 	public function searchDokter(Request $request)
@@ -86,9 +106,9 @@ class PelayananController extends Controller
 		->get();
 
 		if (count($jadwal))
-			return response()->json(['message' => 'Belum ada jadwal dokter', 'data' => $jadwal], 200);
+			return response()->json(['message' => 'Ok', 'data' => $jadwal], 200);
 
-		return response()->json(['message' => 'Ok', 'data' => $jadwal], 200);
+		return response()->json(['message' => 'Belum ada jadwal dokter', 'data' => $jadwal], 404);
 	}
 
 	public function testing(Request $request)

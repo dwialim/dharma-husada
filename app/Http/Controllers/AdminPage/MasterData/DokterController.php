@@ -14,8 +14,6 @@ class DokterController extends Controller
 {
 	public function main()
 	{
-		// return MasterDokter::all();
-		// return Str::uuid();
 		return view('admin-page.contents.master-data.dokter.main');
 	}
 

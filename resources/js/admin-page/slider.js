@@ -7,10 +7,10 @@ let module = await initModule(),
 	swal = module.swal,
 	animasi = module.var_animasi;
 
-const dokterTable = $("#dt-dokter")
+const $sliderTable = $("#dt-slider")
 
 function dataTable(){
-	$("#dt-dokter").dataTable({
+	$sliderTable.dataTable({
 		sDom: `
 			<'row d-md-flex justify-content-between align-items-center'
 				<'col-md-auto'l>
@@ -32,20 +32,21 @@ function dataTable(){
 		searchDelay: 500,
 		language: { searchPlaceholder: 'Masukkan kata kunci' },
 		columnDefs: [
-			{ targets: [0, 2], orderable: false, searchable: false, className: 'text-center' },
+			{ targets: [0, 3], orderable: false, searchable: false, className: 'text-center' },
 			{ targets: [0], width: '5%' },
-			{ targets: [2], width: '15%' },
+			{ targets: [3], width: '15%' },
 		],
-		ajax:{ url: dokterTable.data('route-datatable'), type: "GET" },
+		ajax:{ url: $sliderTable.data('route-datatable'), type: "GET" },
 		columns: [
 			{data: 'DT_RowIndex', name: 'DT_RowIndex'},
-			{data: 'nama', name: 'nama'},
+			{data: 'judul', name: 'judul'},
+			{data: 'content', name: 'content'},
 			{data: 'action', name: 'action'}
 		],
 		initComplete: function (settings, json) {
-			$("#dt-dokter_wrapper .container-button-add").html(`
+			$("#dt-slider_wrapper .container-button-add").html(`
 				<button type="button" class="btn btn-sm btn-primary px-3 btn-add" id="btn-add">
-					<i class="ti ti-plus fw-bolder"></i> Tambah Dokter
+					<i class="ti ti-plus fw-bolder"></i> Tambah Data
 				</button>
 			`)
 
@@ -55,7 +56,7 @@ function dataTable(){
 				new bootstrap.Tooltip(tooltipTriggerEl);
 			})
 
-			$("#dt-dokter_wrapper thead tr .rm-sort").removeClass('dt-ordering-asc')
+			$("#dt-slider_wrapper thead tr .rm-sort").removeClass('dt-ordering-asc')
 		}
 	})
 }
@@ -66,22 +67,22 @@ $(() => {
 
 
 $(document).on('click', '.container-button-add .btn-add', async function () {
-	const response = await postRequest(dokterTable.data('route-form'))
+	const response = await postRequest($sliderTable.data('route-form'))
 
 	$("#master-container").fadeOut(400, function () {
 		$("#seconds-container").empty().html($(response.data.data)).hide().fadeIn(400)
 	})
 })
 
-$("#dt-dokter").on('click', '.btn-edit', async function () {
-	const response = await postRequest(dokterTable.data('route-form'), {dokter_id: $(this).data('id')})
+$sliderTable.on('click', '.btn-edit', async function () {
+	const response = await postRequest($sliderTable.data('route-form'), {slider_id: $(this).data('id')})
 
 	$("#master-container").fadeOut(400, function () {
 		$("#seconds-container").empty().html($(response.data.data)).hide().fadeIn(400)
 	})
 })
 
-$("#dt-dokter").on('click', '.btn-destroy', async function (e) {
+$sliderTable.on('click', '.btn-destroy', async function (e) {
 	const $this = $(this).attr("disabled", true),
 		id = $this.data("id");
 
@@ -89,7 +90,7 @@ $("#dt-dokter").on('click', '.btn-destroy', async function (e) {
 
 	if (!isConfirmed) return $this.attr("disabled", false);
 
-	const response = await postRequest(dokterTable.data("route-destroy"), { dokter_id: id })
+	const response = await postRequest($sliderTable.data("route-destroy"), { slider_id: id })
 
 	if (response.status !== 200) {
 		await swal.warning({
@@ -138,36 +139,27 @@ $("#seconds-container").on('click', '.btn-kembali', function () {
 })
 
 $("#seconds-container").on('click', '.btn-simpan', async function () {
-	var $this = $(this)
+	const $this = $(this).prop('disabled', true).addClass('loading'),
+		$form = $("#form-slider"),
+		data = new FormData($form[0]);
 
-	$this.attr('disabled', true)
+	const response = await postRequest($form.data('route-store'), data)
 
-	$(".loading-modal").modal('show').one('shown.bs.modal', async function() {
-		const data = new FormData($("#form-dokter")[0]),
-			response = await postRequest($("#form-dokter").data('route-store'), data);
+	const success = [200, 201].includes(response.status);
 
-		$(".loading-modal").modal('hide').one('hidden.bs.modal', async() => {
-			if (response.status != 201) {
-				await swal.warning({
-					text: response.data.errors ?? response.data.message,
-					hideClass: animasi.fadeOutUp,
-				})
-				return $this.attr('disabled', false)
-			}
+	await swal[success ? 'success' : 'warning']({
+		title: success ? response.data.message : '',
+		text: success ? '' : response.data.errors ?? response.data.message,
+		hideClass: animasi.fadeOutUp,
+	})
 
-			await swal.success({
-				title: response.data.message,
-				text: '',
-				hideClass: animasi.fadeOutUp,
-			})
+	$this.prop('disabled', false).removeClass('loading')
 
-			$("#seconds-container").fadeOut(400, function () {
-				$("#master-container").fadeIn(400)
-				$("#seconds-container").empty()
-				dataTable()
-			})
+	if (!success) return;
 
-			$this.attr('disabled', false)
-		})
+	$("#seconds-container").fadeOut(400, function () {
+		$("#master-container").fadeIn(400)
+		$("#seconds-container").empty()
+		dataTable()
 	})
 })

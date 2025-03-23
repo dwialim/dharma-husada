@@ -212,13 +212,9 @@ $("#dt-jadwal-dokter-klinik").on('click', '.btn-edit', async function () {
 
 	$("#master-container").fadeOut(400, function () {
 		$("#seconds-container").empty().html($(response.data.data)).hide().fadeIn(400)
-	})
-
-	renderSelect2($(".single-select"))
-
-	setTimeout(() => {
+		renderSelect2($(".single-select"))
 		initTooltip()
-	}, 1000);
+	})
 })
 
 $("#dt-jadwal-dokter-klinik").on('click', '.btn-destroy', async function (e) {

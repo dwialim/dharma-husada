@@ -4,6 +4,10 @@ namespace App\Http\Controllers\LandingPage;
 
 use App\Http\Controllers\Controller;
 use App\Models\MasterDokter;
+use App\Models\ProfilRS;
+use App\Models\SambutanPimpinan;
+use App\Models\Slider;
+use App\Models\WaktuOperasional;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -28,7 +32,11 @@ class BerandaController extends Controller
 			'WhatsApp_Image_2024-12-05_at_12.47.39-removebg-preview.png',
 		];
 
-		$data['dokter'] = MasterDokter::inRandomOrder()->limit(4)->get();
+		$data['slider'] = Slider::all();
+		$data['dokter'] = MasterDokter::has('jadwal')
+			->with(['jadwal.poli_klinik', 'jadwal.detail'])
+			->inRandomOrder()->limit(4)->get();
+		$data['sambutan'] = SambutanPimpinan::first();
 		$data['menu'] = $this->menu;
 
 		return view('landing-page.page.beranda.main', $data);
@@ -46,5 +54,22 @@ class BerandaController extends Controller
 			}
 		}
 		return request()->ip(); // it will return the server IP if the client IP is not found using this method.
+	}
+
+	public function waktuOperasional(Request $request)
+	{
+		$data = collect(WaktuOperasional::all())->mapWithKeys(fn($item) => [$item['hari_num'] => $item])->toArray();
+		if (count($data))
+			return response()->json(['message' => 'Ok', 'data' => $data, 'profil' => ProfilRS::first() ?? ''], 200);
+
+		return response()->json(['message' => 'No content'], 204);
+	}
+
+	public function sambutanPimpinan(Request $request)
+	{
+		if ($data = SambutanPimpinan::first())
+			return response()->json(['message' => 'Ok', 'data' => $data], 200);
+
+		return response()->json(['message' => 'No content'], 204);
 	}
 }

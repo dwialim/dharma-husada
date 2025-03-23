@@ -13,7 +13,30 @@
 
 		<div class="container no-select">
 			<div class="row">
-				<div class="col-md-4 p-3" data-aos="fade-up" data-aos-delay="200">
+				@if ($pengumuman && count($pengumuman))
+					@foreach ($pengumuman as $key => $item)
+						<div class="col-md-4 p-3" data-aos="fade-up" data-aos-delay="200">
+							<div class="card">
+								<img src="{{asset('storage/' . $item->gambar)}}" class="card-img-top" alt="...">
+								<div class="tag">
+									<span>{{date('d', strtotime($item->created_at))}}</span>
+									<span>{{substr(date('F', strtotime($item->created_at)), 0, 3)}}</span>
+								</div>
+								<div class="card-body poppins">
+									<h3 class="card-title">{{$item->judul}}</h3>
+									<div class="my-4 content" id="content-{{$item->id}}" data-id="{{$item->id}}">
+										{!!$item->content!!}
+									</div>
+									{{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+									<a href="{{route('landing.informasi.pengumuman.detail', ['id' => $item->id])}}" class="btn btn-primary">Baca Selengkapnya</a>
+								</div>
+							</div>
+						</div>
+					@endforeach
+				@endif
+
+				{{-- <div class="col-md-4 p-3" data-aos="fade-up" data-aos-delay="200">
 					<div class="card">
 						<img src="https://images.unsplash.com/photo-1562979314-bee7453e911c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
 						<div class="tag">
@@ -104,7 +127,7 @@
 							<a href="#" class="btn btn-primary">Baca Selengkapnya</a>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</section>
@@ -113,4 +136,6 @@
 @push('scripts')
 	{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	@vite(['resources/js/landing-page/pelayanan.js']) --}}
+
+	@vite(['resources/js/landing-page/informasi.js'])
 @endpush

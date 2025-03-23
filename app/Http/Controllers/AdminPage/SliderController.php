@@ -3,24 +3,25 @@
 namespace App\Http\Controllers\AdminPage;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostManajemenInformasiRequest;
-use App\Models\ManajemenInformasi;
+use App\Http\Requests\PostSliderRequest;
+use App\Models\Slider;
 use Illuminate\Http\Request;
-use DB, DataTables;
+use DataTables, DB;
 use Illuminate\Support\Facades\Storage;
 
-class ManajemenInformasiController extends Controller
+class SliderController extends Controller
 {
 	public function main()
 	{
-		return view('admin-page.contents.informasi.main');
+		$data = Slider::first() ?? '';
+
+		return view('admin-page.contents.other.slider.main', compact('data'));
 	}
 
 	public function datatable(Request $request)
 	{
-		return DataTables::eloquent(ManajemenInformasi::query())
+		return DataTables::eloquent(Slider::query())
 			->addIndexColumn()
-			->editColumn('kategori', fn($row) => ucfirst($row->kategori))
 			->addColumn('action', fn($item) => view('partials.action-buttons', [
 				'id' => $item->id, 'prefix' => ['u', 'd']
 			])->render())
@@ -30,11 +31,9 @@ class ManajemenInformasiController extends Controller
 
 	public function form(Request $request)
 	{
-		$manajemenInformasi = "";
-		if ($request->manajemen_informasi_id)
-			$manajemenInformasi = ManajemenInformasi::find($request->manajemen_informasi_id);
+		$slider = Slider::find($request->slider_id) ?? '';
 
-		$content = view('admin-page.contents.informasi.form', compact("manajemenInformasi"))->render();
+		$content = view('admin-page.contents.other.slider.form', compact("slider"))->render();
 
 		return response()->json([
 			'message' => 'Ok',
@@ -42,18 +41,18 @@ class ManajemenInformasiController extends Controller
 		], 200);
 	}
 
-	public function store(PostManajemenInformasiRequest $request)
+	public function store(PostSliderRequest $request)
 	{
 		DB::beginTransaction();
 		try {
 			$file = $request->file('gambar');
 			$fileName = $file ? date('His') . '-' . $file->getClientOriginalName() : '';
-			$directory = "manajemen-informasi/" . date('Y-m-d') . '/' . $fileName;
+			$directory = 'slider/' . date('Y-m-d') . '/' . $fileName;
 
-			$store = ManajemenInformasi::find($request->manajemen_informasi_id) ?? new ManajemenInformasi;
+			$store = Slider::find($request->slider_id) ?? new Slider;
 
 			if ($file) {
-				if (!Storage::putFileAs("manajemen-informasi/" . date('Y-m-d'), $file, $fileName)) {
+				if (!Storage::putFileAs('slider/' . date('Y-m-d'), $file, $fileName)) {
 					DB::rollback();
 					return response()->json(['message' => 'Gagal menyimpan gambar, silahkan coba lagi!'], 500);
 				}
@@ -64,9 +63,7 @@ class ManajemenInformasiController extends Controller
 				$store->gambar = $directory;
 			}
 
-			$store->judul = $request->judul;
-			$store->kategori = $request->kategori;
-			$store->content = $request->content;
+			$store->fill($request->only(['judul', 'content'])); # mass assignment
 
 			if (!$store->save()) {
 				DB::rollback();
@@ -74,7 +71,7 @@ class ManajemenInformasiController extends Controller
 			}
 
 			DB::commit();
-			return response()->json(['message' => 'Data berhasil ' . ($request->manajemen_informasi_id ? 'diperbarui' : 'dibuat') . '.'], $request->manajemen_informasi_id ? 200 : 201);
+			return response()->json(['message' => 'Data berhasil ' . ($request->slider_id ? 'diperbarui' : 'dibuat') . '.'], $request->slider_id ? 200 : 201);
 		} catch (\Throwable $e) {
 			DB::rollback();
 			return response()->json(['message' => $e->getMessage()], 500);
@@ -83,15 +80,15 @@ class ManajemenInformasiController extends Controller
 
 	public function destroy(Request $request)
 	{
-		$manajemenInformasi = ManajemenInformasi::find($request->manajemen_informasi_id);
+		$slider = Slider::find($request->slider_id);
 
-		if (!$manajemenInformasi)
+		if (!$slider)
 			return response()->json(['message' => 'Data tidak ditemukan / sudah dihapus, silahkan reload halaman'], 404);
 
-		if (!empty($manajemenInformasi->gambar) && Storage::exists($manajemenInformasi->gambar))
-			Storage::delete($manajemenInformasi->gambar); # Hapus gambar lama jika ada
+		if (!empty($slider->gambar) && Storage::exists($slider->gambar))
+			Storage::delete($slider->gambar); # Hapus gambar lama jika ada
 
-		return $manajemenInformasi->delete()
+		return $slider->delete()
 			? response()->json(['message' => 'Data berhasil dihapus'], 200)
 			: response()->json(['message' => 'Gagal menghapus data, silahkan coba lagi!'], 500);
 	}

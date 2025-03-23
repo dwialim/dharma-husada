@@ -1,0 +1,10 @@
+.flex-contianer {
+	display: flex;
+	/* align-items: center; */
+	flex-direction: column;
+}
+
+.flex-input {
+	display: flex;
+	align-items: center;
+}

@@ -14,6 +14,7 @@ Route::controller(BerandaController::class)
 ->as('beranda.')
 ->group(function() {
 	Route::get('/', 'main')->name('main');
+	Route::get('waktu-operasional', 'waktuOperasional')->name('waktuOperasional');
 });
 
 Route::as('profil.')

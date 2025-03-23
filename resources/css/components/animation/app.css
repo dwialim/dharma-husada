@@ -21,3 +21,12 @@
 		transform: translate3d(0, 0, 0);
 	}
 }
+
+@keyframes buttonAnim {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

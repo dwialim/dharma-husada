@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminPage\MasterData\ProfilRSController;
 use App\Http\Controllers\AdminPage\Profil\StrukturOrganisasiController;
 use App\Http\Controllers\AdminPage\Profil\TugasFungsiController;
 use App\Http\Controllers\AdminPage\Profil\VisiMisiController;
+use App\Http\Controllers\AdminPage\SambutanPimpinanController;
+use App\Http\Controllers\AdminPage\SliderController;
 use App\Http\Controllers\AdminPage\WaktuOperasionalController;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +69,7 @@ Route::middleware('auth')
 	->as('profilRS.')
 	->group(function () {
 		Route::get('/', 'main')->name('main');
+		Route::post('store', 'store')->name('store');
 	});
 	/** Master data end */
 
@@ -118,6 +121,10 @@ Route::middleware('auth')
 	->as('manajemenInformasi.')
 	->group(function () {
 		Route::get('/', 'main')->name('main');
+		Route::get('datatable', 'datatable')->name('datatable');
+		Route::post('form', 'form')->name('form');
+		Route::post('store', 'store')->name('store');
+		Route::post('destroy', 'destroy')->name('destroy');
 	});
 	/** Informasi end */
 
@@ -127,6 +134,26 @@ Route::middleware('auth')
 	->as('waktuOperasional.')
 	->group(function () {
 		Route::get('/', 'main')->name('main');
+		Route::post('store', 'store')->name('store');
+	});
+
+	Route::controller(SambutanPimpinanController::class)
+	->prefix('sambutan-pimpinan')
+	->as('sambutanPimpinan.')
+	->group(function () {
+		Route::get('/', 'main')->name('main');
+		Route::post('store', 'store')->name('store');
+	});
+
+	Route::controller(SliderController::class)
+	->prefix('slider')
+	->as('slider.')
+	->group(function () {
+		Route::get('/', 'main')->name('main');
+		Route::get('datatable', 'datatable')->name('datatable');
+		Route::post('form', 'form')->name('form');
+		Route::post('store', 'store')->name('store');
+		Route::post('destroy', 'destroy')->name('destroy');
 	});
 	/** Other end */
 });

@@ -19,6 +19,7 @@ export default defineConfig({
 
 				/** Admin page */
 				'resources/css/admin-page/app.css',
+				'resources/css/admin-page/waktu-operasional.css',
 				'resources/css/admin-page/master-data/dokter.css',
 				'resources/css/admin-page/profil/visi-misi.css',
 
@@ -29,7 +30,10 @@ export default defineConfig({
 				'resources/js/admin-page/profil/tugas-fungsi.js',
 				'resources/js/admin-page/profil/visi-misi.js',
 				'resources/js/admin-page/app.js',
+				'resources/js/admin-page/informasi.js',
 				'resources/js/admin-page/jadwal-dokter-klinik.js',
+				'resources/js/admin-page/sambutan-pimpinan.js',
+				'resources/js/admin-page/waktu-operasional.js',
 				/** Admin page end */
 
 				/** Auth */
@@ -48,6 +52,8 @@ export default defineConfig({
 				'resources/css/landing-page/profil.css',
 
 				'resources/js/landing-page/app.js',
+				'resources/js/landing-page/footer.js',
+				'resources/js/landing-page/informasi.js',
 				'resources/js/landing-page/kontak.js',
 				'resources/js/landing-page/pelayanan.js',
 				/** Landing page end */

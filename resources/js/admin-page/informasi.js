@@ -7,10 +7,10 @@ let module = await initModule(),
 	swal = module.swal,
 	animasi = module.var_animasi;
 
-const dokterTable = $("#dt-dokter")
+const $informasiTable = $("#dt-manajemen-informasi")
 
 function dataTable(){
-	$("#dt-dokter").dataTable({
+	$informasiTable.dataTable({
 		sDom: `
 			<'row d-md-flex justify-content-between align-items-center'
 				<'col-md-auto'l>
@@ -32,20 +32,21 @@ function dataTable(){
 		searchDelay: 500,
 		language: { searchPlaceholder: 'Masukkan kata kunci' },
 		columnDefs: [
-			{ targets: [0, 2], orderable: false, searchable: false, className: 'text-center' },
+			{ targets: [0, 3], orderable: false, searchable: false, className: 'text-center' },
 			{ targets: [0], width: '5%' },
-			{ targets: [2], width: '15%' },
+			{ targets: [3], width: '15%' },
 		],
-		ajax:{ url: dokterTable.data('route-datatable'), type: "GET" },
+		ajax:{ url: $informasiTable.data('route-datatable'), type: "GET" },
 		columns: [
 			{data: 'DT_RowIndex', name: 'DT_RowIndex'},
-			{data: 'nama', name: 'nama'},
+			{data: 'judul', name: 'judul'},
+			{data: 'kategori', name: 'kategori'},
 			{data: 'action', name: 'action'}
 		],
 		initComplete: function (settings, json) {
-			$("#dt-dokter_wrapper .container-button-add").html(`
+			$("#dt-manajemen-informasi_wrapper .container-button-add").html(`
 				<button type="button" class="btn btn-sm btn-primary px-3 btn-add" id="btn-add">
-					<i class="ti ti-plus fw-bolder"></i> Tambah Dokter
+					<i class="ti ti-plus fw-bolder"></i> Tambah Data
 				</button>
 			`)
 
@@ -55,33 +56,65 @@ function dataTable(){
 				new bootstrap.Tooltip(tooltipTriggerEl);
 			})
 
-			$("#dt-dokter_wrapper thead tr .rm-sort").removeClass('dt-ordering-asc')
+			$("#dt-manajemen-informasi_wrapper thead tr .rm-sort").removeClass('dt-ordering-asc')
 		}
 	})
 }
 
-$(() => {
+let editor;
+
+function initCKEditor() {
+	ClassicEditor
+	.create( document.querySelector('#classic-editor'), {
+		// ... Other configuration options ...
+		// toolbar: [ 'undo', 'redo', 'bold', 'italic', 'numberedList', 'bulletedList' ]
+		toolbar: {
+			items: [
+				'undo', 'redo',
+				'|',
+				'heading',
+				'|',
+				'bold', 'italic',
+				'|',
+				'link', 'blockQuote',
+				'|',
+				'bulletedList', 'numberedList'
+			],
+			shouldNotGroupWhenFull: false
+		}
+	})
+	.then(newEditor => {
+		editor = newEditor
+	})
+	.catch( error => {
+		console.log( error )
+	})
+}
+
+(() => {
 	dataTable()
-})
+})()
 
 
 $(document).on('click', '.container-button-add .btn-add', async function () {
-	const response = await postRequest(dokterTable.data('route-form'))
+	const response = await postRequest($informasiTable.data('route-form'))
 
 	$("#master-container").fadeOut(400, function () {
 		$("#seconds-container").empty().html($(response.data.data)).hide().fadeIn(400)
+		initCKEditor()
 	})
 })
 
-$("#dt-dokter").on('click', '.btn-edit', async function () {
-	const response = await postRequest(dokterTable.data('route-form'), {dokter_id: $(this).data('id')})
+$informasiTable.on('click', '.btn-edit', async function () {
+	const response = await postRequest($informasiTable.data('route-form'), {manajemen_informasi_id: $(this).data('id')})
 
 	$("#master-container").fadeOut(400, function () {
 		$("#seconds-container").empty().html($(response.data.data)).hide().fadeIn(400)
+		initCKEditor()
 	})
 })
 
-$("#dt-dokter").on('click', '.btn-destroy', async function (e) {
+$informasiTable.on('click', '.btn-destroy', async function (e) {
 	const $this = $(this).attr("disabled", true),
 		id = $this.data("id");
 
@@ -89,7 +122,7 @@ $("#dt-dokter").on('click', '.btn-destroy', async function (e) {
 
 	if (!isConfirmed) return $this.attr("disabled", false);
 
-	const response = await postRequest(dokterTable.data("route-destroy"), { dokter_id: id })
+	const response = await postRequest($informasiTable.data("route-destroy"), { manajemen_informasi_id: id })
 
 	if (response.status !== 200) {
 		await swal.warning({
@@ -138,36 +171,40 @@ $("#seconds-container").on('click', '.btn-kembali', function () {
 })
 
 $("#seconds-container").on('click', '.btn-simpan', async function () {
-	var $this = $(this)
+	const $this = $(this).prop('disabled', true),
+		$modal = $(".loading-modal"),
+		$form = $("#form-manajemen-informasi"),
+		data = new FormData($form[0]);
 
-	$this.attr('disabled', true)
+	data.set('content', editor.getData())
 
-	$(".loading-modal").modal('show').one('shown.bs.modal', async function() {
-		const data = new FormData($("#form-dokter")[0]),
-			response = await postRequest($("#form-dokter").data('route-store'), data);
 
-		$(".loading-modal").modal('hide').one('hidden.bs.modal', async() => {
-			if (response.status != 201) {
-				await swal.warning({
-					text: response.data.errors ?? response.data.message,
-					hideClass: animasi.fadeOutUp,
-				})
-				return $this.attr('disabled', false)
-			}
+	// Tunggu modal benar-benar terbuka sebelum lanjut
+	await new Promise(resolve => $modal.modal('show').one('shown.bs.modal', resolve))
 
-			await swal.success({
-				title: response.data.message,
-				text: '',
-				hideClass: animasi.fadeOutUp,
-			})
+	// console.log($form.data('route-store'))
+	const response = await postRequest($form.data('route-store'), data)
+	console.log(response)
 
-			$("#seconds-container").fadeOut(400, function () {
-				$("#master-container").fadeIn(400)
-				$("#seconds-container").empty()
-				dataTable()
-			})
+	// Tunggu modal benar-benar tertutup sebelum lanjut
+	await new Promise(resolve => $modal.modal('hide').one('hidden.bs.modal', resolve))
 
-			$this.attr('disabled', false)
-		})
+	const success = [200, 201].includes(response.status);
+
+	await swal[success ? 'success' : 'warning']({
+		title: success ? response.data.message : '',
+		text: success ? '' : response.data.errors ?? response.data.message,
+		hideClass: animasi.fadeOutUp,
+	})
+
+
+	$this.prop('disabled', false)
+
+	if (!success) return;
+
+	$("#seconds-container").fadeOut(400, function () {
+		$("#master-container").fadeIn(400)
+		$("#seconds-container").empty()
+		dataTable()
 	})
 })

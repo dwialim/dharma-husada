@@ -8,17 +8,21 @@
 
 @section('content')
 	<!-- Hero Section -->
+	@if(count($slider))
 	<section id="hero" class="dark-background section p-0 m-0 no-select">
-		{{-- <div id="owl-demo" class="owl-carousel owl-theme py-3">
-			<div class="item rounded responsive img-thumbnail">
-				<img src="{{asset('images/rs/slide-1.jpg')}}" alt="">
-			</div>
-			<div class="item rounded responsive img-thumbnail">
-				<img src="{{asset('images/rs/DSC0245333.jpg')}}" alt="">
-			</div>
-		</div> --}}
 		<div id="owl-demo" class="owl-carousel owl-theme">
+			@foreach ($slider as $item)
 			<div class="item responsive">
+				<div class="text-overlay">
+					<div class="text-content fade-in-down">
+						<h1 class="marcellus-bold">{{$item->judul}}</h1>
+						<p class="marcellus-regular">{{$item->content}}</p>
+					</div>
+				</div>
+				<img src="{{asset('storage/' . $item->gambar)}}" alt="">
+			</div>
+			@endforeach
+			{{-- <div class="item responsive">
 				<div class="text-overlay">
 					<div class="text-content fade-in-down">
 						<h1 class="marcellus-bold">Text 1</h1>
@@ -35,21 +39,24 @@
 					</div>
 				</div>
 				<img src="{{asset('images/rs/DSC0245333.jpg')}}" alt="">
-			</div>
+			</div> --}}
 		</div>
 	</section><!-- /Hero Section -->
+	@endif
 
+	@if($sambutan)
 	<section id="sambutan" class="sambutan section poppins">
 
 		<div class="container">
 			<div class="row gy-4 gx-5 align-items-stretch">
 				<div class="col-md-12 text-justify">
 					<div data-aos="fade-up" data-aos-delay="300">
-						<img src="{{asset('landing-page/assets/img/about.jpg')}}" class="img-sambutan" alt="">
+						<img src="{{asset('storage/' . $sambutan->gambar)}}" class="img-sambutan" alt="">
 					</div>
 					<div data-aos="fade-up" data-aos-delay="200">
 						<h1 class="widget-title">Sambutan Pimpinan Rumah Sakit</h1>
-						<p class="fs-15">Selamat datang di Rumah Sakit <strong>[Nama Rumah Sakit]</strong>,</p>
+						{!! $sambutan->content !!}
+						{{-- <p class="fs-15">Selamat datang di Rumah Sakit <strong>[Nama Rumah Sakit]</strong>,</p>
 
 						<p>Kami mengucapkan terima kasih atas kunjungan Anda di situs resmi kami. Sebagai Kepala Rumah Sakit <strong>[Nama Rumah Sakit]</strong>, saya merasa terhormat untuk menyampaikan sambutan ini kepada Anda.</p>
 
@@ -67,7 +74,7 @@
 						<p>
 							<strong>[Nama Pimpinan]</strong><br>
 							Kepala Rumah Sakit <strong>[Nama Rumah Sakit]</strong>
-						</p>
+						</p> --}}
 					</div>
 				</div>
 			</div>
@@ -75,6 +82,7 @@
 	</section>
 
 	<hr class="mx-auto container" width="86%">
+	@endif
 
 	<section id="doctors" class="doctors section poppins">
 		<div class="container section-title" data-aos="fade-up">
@@ -98,7 +106,15 @@
 								<div class="col-md-8">
 									<div class="member-info">
 										<h4>{{$item->nama}}</h4>
-										<span>Poli Klinik</span>
+										<span>{{$item->jadwal[0]->poli_klinik->nama}}</span>
+
+										@php
+											$waktu = array_reduce(json_decode(json_encode($item->jadwal[0]->detail), true), function ($carry, $item) {
+												$carry[$item['hari_num']][] = $item;
+												return $carry;
+											}, []);
+										@endphp
+
 										<div class="table-responsive">
 											<table class="table table-bordered table-default table-striped text-center table-data-dokter no-wrap">
 												<thead>
@@ -114,13 +130,9 @@
 												</thead>
 												<tbody>
 													<tr>
-													  <td>08:00 - 15:00</td>
-													  <td>08:00 - 15:00</td>
-													  <td>-</td>
-													  <td>08:00 - 15:00</td>
-													  <td>-</td>
-													  <td>08:00 - 15:00</td>
-													  <td>08:00 - 15:00</td>
+														@for ($i = 1; $i <= 7; $i++)
+															<td>{{isset($waktu[$i]) ? $waktu[$i][0]['waktu_awal'] . ' - ' . $waktu[$i][0]['waktu_akhir'] : '-'}}</td>
+														@endfor
 													</tr>
 												</tbody>
 											</table>

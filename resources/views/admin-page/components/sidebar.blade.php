@@ -133,6 +133,28 @@
 				</li>
 
 				<li class="pc-item">
+					<a href="{{route('admin.sambutanPimpinan.main')}}" class="pc-link">
+						<span class="pc-micon">
+							<svg class="pc-icon">
+								<use xlink:href="#file-protect"></use>
+							</svg>
+						</span>
+						<span class="pc-mtext" data-i18n="Sambutan Pimpinan">Sambutan Pimpinan</span>
+					</a>
+				</li>
+
+				<li class="pc-item">
+					<a href="{{route('admin.slider.main')}}" class="pc-link">
+						<span class="pc-micon">
+							<svg class="pc-icon">
+								<use xlink:href="#file-image"></use>
+							</svg>
+						</span>
+						<span class="pc-mtext" data-i18n="Slider">Slider</span>
+					</a>
+				</li>
+
+				<li class="pc-item">
 					<a href="{{route('admin.waktuOperasional.main')}}" class="pc-link">
 						<span class="pc-micon">
 							<svg class="pc-icon">

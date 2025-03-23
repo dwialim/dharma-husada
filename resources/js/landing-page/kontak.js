@@ -1,11 +1,11 @@
-var map,
+var $map = $('#map'),
+	map,
 	currentMarker = null, // Pastikan hanya ada satu marker
 	tileLayer,
-	// lat = "-7.6282424",
-	// lng = "111.5332031",
-	lat = "-7.5545456",
-	lng = "112.623519",
-	// -7.554545661454418, 112.6235193503378
+	// lat = "-7.5545456",
+	// lng = "112.623519",
+	lat = $map.data('lat'),
+	lng = $map.data('lng'),
 	year = new Date().getFullYear();
 
 $(() => {
@@ -21,14 +21,14 @@ $(() => {
 		attribution: `&copy; ${year}`,
 	}).addTo(map)
 
-	map.setView([lat, lng], 16)
+	map.setView([lat, lng], 15)
 
 	if (currentMarker) map.removeLayer(currentMarker);
 
 	currentMarker = L.marker([lat, lng])
 		.addTo(map)
-		.bindPopup('Nama Lokasi')
-		.openPopup();
+		.bindPopup($map.data('nama') != '' ? $map.data('nama') : 'Lokasi Terpilih')
+		// .openPopup()
 
 	currentMarker.on('mouseover',function(ev) {
 		currentMarker.openPopup()
@@ -36,7 +36,7 @@ $(() => {
 	currentMarker.on('mouseout', function() {
 		setTimeout(() => {
 			currentMarker.closePopup()
-		}, 1500)
+		}, 500)
 	})
 	/** Maps end */
 })

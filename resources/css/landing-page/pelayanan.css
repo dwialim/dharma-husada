@@ -93,3 +93,42 @@
 		margin-top: 2.5em;
 	}
 }
+
+/* .buttonload {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 12px 24px;
+	font-size: 16px;
+	margin: 25px;
+} */
+
+/* #btn-cari {
+	font-weight: 900;
+	position: relative;
+}
+
+#btn-cari::after {
+	content: '';
+	display: block;
+	width: 1.5em;
+	height: 1.5em;
+	position: absolute;
+	left: calc(50% - 0.75em);
+	top: calc(50% - 0.75em);
+	border: 0.25em solid transparent;
+	border-right-color: white;
+	border-radius: 50%;
+	animation: buttonAnim 0.6s linear infinite;
+	opacity: 0;
+}
+
+#btn-cari.loading {
+	color: transparent;
+}
+
+#btn-cari.loading::after {
+	opacity: 1;
+} */
+
+/* em values are used to adjust button values such as padding, radius etc. based on font-size */

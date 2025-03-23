@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sambutan_pimpinan', function (Blueprint $table) {
             $table->id();
             $table->string('gambar')->nullable();
-            $table->string('judul');
+            $table->string('judul')->nullable();
             $table->text('content');
             $table->timestamps();
         });

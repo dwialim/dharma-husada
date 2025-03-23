@@ -1,4 +1,4 @@
-<footer id="footer" class="footer light-background">
+<footer id="footer" class="footer light-background" data-route-waktu-opreasional="{{route('landing.beranda.waktuOperasional')}}">
 
 	<div class="container footer-top pb-3">
 		<div class="row">
@@ -50,13 +50,13 @@
 				<div class="stats-item footer-links">
 					<span class="d-flex title">Waktu Operasional</span>
 					{{-- <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span> --}}
-					<div class="day"><span>Senin</span> <span>07.00 - 19.00 WIB</span></div>
-					<div class="day"><span>Selasa</span> <span>07.00 - 19.00 WIB</span></div>
-					<div class="day"><span>Rabu</span> <span>07.00 - 19.00 WIB</span></div>
-					<div class="day"><span>Kamis</span> <span>07.00 - 19.00 WIB</span></div>
-					<div class="day"><span>Jumat</span> <span>07.00 - 19.00 WIB</span></div>
-					<div class="day"><span>Sabtu</span> <span>07.00 - 19.00 WIB</span></div>
-					<div class="day"><span>Minggu</span> <span>07.00 - 19.00 WIB</span></div>
+					<div class="day"><span>Senin</span> <span class="waktu-senin"></span></div>
+					<div class="day"><span>Selasa</span> <span class="waktu-selasa"></span></div>
+					<div class="day"><span>Rabu</span> <span class="waktu-rabu"></span></div>
+					<div class="day"><span>Kamis</span> <span class="waktu-kamis"></span></div>
+					<div class="day"><span>Jumat</span> <span class="waktu-jumat"></span></div>
+					<div class="day"><span>Sabtu</span> <span class="waktu-sabtu"></span></div>
+					<div class="day"><span>Minggu</span> <span class="waktu-minggu"></span></div>
 				</div>
 			</div>
 

@@ -1,0 +1,9 @@
+.easy-button-container i{
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.easy-button-container .easy-button-button span{
+	display: flex;
+	align-items: center;
+}

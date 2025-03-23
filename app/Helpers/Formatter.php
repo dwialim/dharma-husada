@@ -6,6 +6,16 @@ use DateTime;
 use Help, Validator, Config;
 
 class Formatter {
+	public static function dateIndo($date)
+	{
+		$timestamps = strtotime($date);
+		$day = date('d', $timestamps);
+		$month = self::getBulan(date('n', $timestamps));
+		$year = date('Y', $timestamps);
+		$hari = self::getHari(date('N', $timestamps));
+		return "$hari, $day $month $year";
+	}
+
 	public static function getBulan($bln){
 		switch ($bln) {
 			case 1:

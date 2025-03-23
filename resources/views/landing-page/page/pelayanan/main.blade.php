@@ -20,20 +20,20 @@
 							<div class="col-md-5 p-2">
 								<label for="input-hari" class="form-label">Hari <span class="text-primary">*Optional</span></label>
 								<select class="select2-single form-control" id="input-hari" name="input_hari">
-									<option selected>Semua Hari</option>
+									<option selected value="">Semua Hari</option>
 									<option value="1">Senin</option>
 									<option value="2">Selasa</option>
 									<option value="3">Rabu</option>
 									<option value="4">Kamis</option>
 									<option value="5">Jumat</option>
 									<option value="6">Sabtu</option>
-									<option value="0">Minggu</option>
+									<option value="7">Minggu</option>
 								</select>
 							</div>
 							<div class="col-md-5 p-2">
 								<label for="input-poli" class="form-label">Spesialis / Klinik <span class="text-primary">*Optional</span></label>
 								<select class="select2-single form-control" id="input-poli" name="input_poli" style="width: 100%;">
-									<option selected>Semua Spesialis / Klinik</option>
+									<option selected value="">Semua Spesialis / Klinik</option>
 									@if (count($poliKlinik))
 										@foreach ($poliKlinik as $item)
 										<option value="{{$item->id}}">{{$item->nama}}</option>
@@ -42,12 +42,22 @@
 								</select>
 							</div>
 							<div class="col-md-2 p-2 container-button-search">
-								<button type="button" class="btn btn-primary">Cari</button>
+								{{-- <button class="buttonload btn-search"><i class="fa fa-spinner fa-pulse loader hide"></i>Loading</button> --}}
+								{{-- <button type="button" class="btn btn-primary btn-search">Cari</button> --}}
+
+								{{-- <button class="action-btn loading" id="btn-cari">Login</button> --}}
+								<button class="btn btn-primary fw-bolder btn-loader"
+									id="btn-cari"
+									data-route-jadwal="{{route('landing.pelayanan.jadwalDokter')}}"
+								>
+									Cari
+								</button>
 							</div>
 						</div>
 
+						<div id="data-jadwal"></div>
 						<!-- Search form -->
-						<div class="row">
+						{{-- <div class="row">
 							<div class="col-md-12 container-input-search" id="container-input-search">
 								<center>Berikut adalah Jadwal Rutin, <span class="text-danger">Jadwal bisa berubah sewaktu-waktu</span></center>
 								<div class="px-4 py-3 text-center">
@@ -102,7 +112,7 @@
 									@endforeach
 								</div>
 							</div>
-						@endforeach
+						@endforeach --}}
 						<!-- Display dokter & klinik -->
 						{{-- <div class="row">
 							<div class="col-md-12">
