@@ -18,8 +18,5 @@ import {getRequest} from '@module/axios'
 		$target.fadeOut(300, function () {
 			$(this).text(text).fadeIn(300)
 		})
-
-		console.log(obj)
-		console.log("\n\n")
 	})
 })()
