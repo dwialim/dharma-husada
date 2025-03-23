@@ -18,10 +18,11 @@ export default defineConfig({
 				/** Root end */
 
 				/** Admin page */
+				'resources/css/admin-page/master-data/dokter.css',
+				'resources/css/admin-page/master-data/profil-rs.css',
+				'resources/css/admin-page/profil/visi-misi.css',
 				'resources/css/admin-page/app.css',
 				'resources/css/admin-page/waktu-operasional.css',
-				'resources/css/admin-page/master-data/dokter.css',
-				'resources/css/admin-page/profil/visi-misi.css',
 
 				'resources/js/admin-page/master-data/dokter.js',
 				'resources/js/admin-page/master-data/poli-klinik.js',
@@ -33,6 +34,7 @@ export default defineConfig({
 				'resources/js/admin-page/informasi.js',
 				'resources/js/admin-page/jadwal-dokter-klinik.js',
 				'resources/js/admin-page/sambutan-pimpinan.js',
+				'resources/js/admin-page/slider.js',
 				'resources/js/admin-page/waktu-operasional.js',
 				/** Admin page end */
 
