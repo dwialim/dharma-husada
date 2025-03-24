@@ -50,9 +50,11 @@
 		<div class="container">
 			<div class="row gy-4 gx-5 align-items-stretch">
 				<div class="col-md-12 text-justify">
+					@if($sambutan && $sambutan->gambar && file_exists( public_path() .'/storage/'. $sambutan->gambar))
 					<div data-aos="fade-up" data-aos-delay="300">
 						<img src="{{asset('storage/' . $sambutan->gambar)}}" class="img-sambutan" alt="">
 					</div>
+					@endif
 					<div data-aos="fade-up" data-aos-delay="200">
 						<h1 class="widget-title">Sambutan Pimpinan Rumah Sakit</h1>
 						{!! $sambutan->content !!}
