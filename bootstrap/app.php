@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\VisitorStatistics;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -15,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
 		commands: __DIR__.'/../routes/console.php',
 		health: '/up',
 		then: function () {
-			Route::name('landing.')->group(base_path('routes/landing.web.php'));
+			Route::name('landing.')->middleware('visitor')->group(base_path('routes/landing.web.php'));
 
 			Route::prefix('admin')
 				->name('admin.')
@@ -29,7 +31,11 @@ return Application::configure(basePath: dirname(__DIR__))
 		}
 	)
 	->withMiddleware(function (Middleware $middleware) {
-		$middleware->alias(['auth' => Authenticate::class]);
+		$middleware->alias([
+			'auth' => Authenticate::class,
+			'visitor' => VisitorStatistics::class,
+		])
+		->append(StartSession::class);
 	})
 	->withExceptions(function (Exceptions $exceptions) {
 		$exceptions->render(function (HttpException $exception, Request $request) {

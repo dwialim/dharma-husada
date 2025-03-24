@@ -22,7 +22,7 @@ class ProfilRSController extends Controller
 		try {
 			$store = ProfilRS::find($request->profil_rs_id) ?? new ProfilRS;
 
-			$store->fill($request->only(['telepon', 'alamat', 'email', 'twitter', 'facebook', 'instagram', 'linkedin'])); # mass assignment
+			$store->fill($request->only(['telepon', 'alamat', 'email', 'twitter', 'facebook', 'instagram', 'whatsapp', 'tiktok'])); # mass assignment
 			$store->lat = $request->latitude;
 			$store->lng = $request->longitude;
 

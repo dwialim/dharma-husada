@@ -55,12 +55,32 @@
 								</div>
 							</div>
 
+							<div class="col-lg-6">
+								<div class="input-group">
+									<span class="input-group-text" id="inputWhatsapp"><i class="bi bi-whatsapp fs-15"></i></span>
+									<div class="form-floating mb-0">
+										<input type="text" class="form-control" id="floatingWhatsapp" name="whatsapp" autocomplete="off" placeholder="Whatsapp" value="{{$data ? $data->whatsapp : ''}}">
+										<label class="fs-10 d-md-flex align-items-center" for="floatingWhatsapp">Whatsapp Number</label>
+									</div>
+								</div>
+							</div>
+
 							<div class="col-md-6">
 								<div class="input-group">
 									<span class="input-group-text" id="inputEmail"><i class="ti ti-mail fs-15"></i></span>
 									<div class="form-floating mb-0">
 										<input type="email" class="form-control" id="floatingEmail" name="email" autocomplete="off" placeholder="Email" value="{{$data ? $data->email : ''}}">
 										<label class="fs-10 d-md-flex align-items-center" for="floatingEmail">Email</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="input-group">
+									<span class="input-group-text" id="inputTwitter"><i class="ti ti-brand-tiktok fs-15"></i></span>
+									<div class="form-floating mb-0">
+										<input type="text" class="form-control" id="floatingTiktok" name="tiktok" autocomplete="off" placeholder="Tiktok" value="{{$data ? $data->tiktok : ''}}">
+										<label class="fs-10 d-md-flex align-items-center" for="floatingTiktok">Tiktok Url</label>
 									</div>
 								</div>
 							</div>
@@ -91,16 +111,6 @@
 									<div class="form-floating mb-0">
 										<input type="text" class="form-control" id="floatingInstagram" name="instagram" autocomplete="off" placeholder="Instagram" value="{{$data ? $data->instagram : ''}}">
 										<label class="fs-10 d-md-flex align-items-center" for="floatingInstagram">Instagram Url</label>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-6">
-								<div class="input-group">
-									<span class="input-group-text" id="inputLinkedIn"><i class="bi bi-linkedin fs-15"></i></span>
-									<div class="form-floating mb-0">
-										<input type="text" class="form-control" id="floatingLinkedIn" name="linkedin" autocomplete="off" placeholder="LinkedIn" value="{{$data ? $data->linkedin : ''}}">
-										<label class="fs-10 d-md-flex align-items-center" for="floatingLinkedIn">LinkedIn Url</label>
 									</div>
 								</div>
 							</div>

@@ -7,6 +7,7 @@ use App\Models\MasterDokter;
 use App\Models\ProfilRS;
 use App\Models\SambutanPimpinan;
 use App\Models\Slider;
+use App\Models\StatistikPengunjung;
 use App\Models\WaktuOperasional;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,9 @@ class BerandaController extends Controller
 
 	public function main(Request $request)
 	{
-		$ip = $this->getIp();
-		if ($ip != '103.189.201.14')
-			\Log::debug($ip);
+		// $ip = $this->getIp();
+		// if ($ip != '103.189.201.14')
+		// 	\Log::debug($ip);
 
 		$arrayDokter = [
 			// '1a.png',
@@ -56,11 +57,21 @@ class BerandaController extends Controller
 		return request()->ip(); // it will return the server IP if the client IP is not found using this method.
 	}
 
-	public function waktuOperasional(Request $request)
+	public function dataFooter(Request $request)
 	{
 		$data = collect(WaktuOperasional::all())->mapWithKeys(fn($item) => [$item['hari_num'] => $item])->toArray();
+		$timestamps = strtotime('now');
+
 		if (count($data))
-			return response()->json(['message' => 'Ok', 'data' => $data, 'profil' => ProfilRS::first() ?? ''], 200);
+			return response()->json(['message' => 'Ok', 'data' => [
+				'waktu_operasional' => $data,
+				'profil' => ProfilRS::first() ?? '',
+				'stats' => [
+					'hari' =>  StatistikPengunjung::where('tanggal', date('Y-m-d', $timestamps))->sum('total'),
+					'bulan' =>  StatistikPengunjung::whereMonth('tanggal', date('m', $timestamps))->sum('total'),
+					'total' => StatistikPengunjung::sum('total'),
+				]
+			]], 200);
 
 		return response()->json(['message' => 'No content'], 204);
 	}

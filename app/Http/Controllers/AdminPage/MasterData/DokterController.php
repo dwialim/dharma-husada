@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostDokterRequest;
 use App\Models\MasterDokter;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use DB, DataTables;
 use Illuminate\Support\Facades\Storage;
 

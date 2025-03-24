@@ -14,6 +14,8 @@ let module = await initModule(),
 	year = new Date().getFullYear();
 
 $(() => {
+	$("#floatingWhatsapp").setRules('0-9')
+
 	/** Maps */
 	$("#map").fadeIn(600, () => {
 		try {

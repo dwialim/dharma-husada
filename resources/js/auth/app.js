@@ -15,7 +15,6 @@ $("#btn-login").click(async function () {
 		urlDashboard = $(this).data('url-dashboard'),
 		sendRequest = await postRequest(urlToken, data);
 
-	console.log(sendRequest)
 	if (sendRequest.status != 200) return swal.warning({
 		text: sendRequest.data.message,
 		showClass: animasi.fadeInDown,
