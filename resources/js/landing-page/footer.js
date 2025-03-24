@@ -30,7 +30,7 @@ function numberFormat(n) {
 	$(".contact-alamat").text(profil.alamat)
 	$(".contact-telepon").text(profil.telepon)
 	$(".contact-email").text(profil.email)
-	$(".contact-pendaftaran").text(profil.whatsapp.replace(/\D/g, ""))
+	$(".contact-pendaftaran").text(profil.whatsapp !== undefined ? profil.whatsapp.replace(/\D/g, "") : '')
 
 	$(".stats-item .stats-hari").text(numberFormat(stats.hari))
 	$(".stats-item .stats-bulan").text(numberFormat(stats.bulan))
