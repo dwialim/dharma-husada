@@ -67,8 +67,8 @@ class BerandaController extends Controller
 				'waktu_operasional' => $data,
 				'profil' => ProfilRS::first() ?? '',
 				'stats' => [
-					'hari' =>  StatistikPengunjung::where('tanggal', date('Y-m-d', $timestamps))->sum('total'),
-					'bulan' =>  StatistikPengunjung::whereMonth('tanggal', date('m', $timestamps))->sum('total'),
+					'hari' => StatistikPengunjung::where('tanggal', date('Y-m-d', $timestamps))->sum('total'),
+					'bulan' => StatistikPengunjung::whereMonth('tanggal', date('m', $timestamps))->sum('total'),
 					'total' => StatistikPengunjung::sum('total'),
 				]
 			]], 200);

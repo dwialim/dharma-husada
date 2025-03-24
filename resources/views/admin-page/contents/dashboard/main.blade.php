@@ -8,9 +8,12 @@
 		<div class="col-md-6 col-xl-3">
 			<div class="card">
 				<div class="card-body">
-					<h6 class="mb-2 f-w-400 text-muted">Total Page Views</h6>
+					{{-- <h6 class="mb-2 f-w-400 text-muted">Total Page Views</h6>
 					<h4 class="mb-3">4,42,236 <span class="badge bg-light-primary border border-primary"><i class="ti ti-trending-up"></i> 59.3%</span></h4>
-					<p class="mb-0 text-muted text-sm">You made an extra <span class="text-primary">35,000</span> this year</p>
+					<p class="mb-0 text-muted text-sm">You made an extra <span class="text-primary">35,000</span> this year</p> --}}
+					<h6 class="mb-2 f-w-400 text-muted fs-15">Total Pengunjung</h6>
+					<h4 class="mb-3">{{$data['total']}} <span class="badge bg-light-{{$data['color']}} border border-{{$data['color']}}"><i class="ti ti-trending-{{$data['font']}}"></i> {{$data['persentase']}}%</span></h4>
+					<p class="mb-0 text-muted fs-10">Total ada <span class="text-{{$data['color']}}">{{$data['bulan_ini']}}</span> pengunjung di bulan ini</p>
 				</div>
 			</div>
 		</div>
